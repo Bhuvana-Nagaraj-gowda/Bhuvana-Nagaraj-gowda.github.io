@@ -1,49 +1,44 @@
-portfolio:
+title: "Bhuvana Nagaraj"
+description: "Software Engineer • QA Automation • AI/ML"
+url: "https://<your-username>.github.io"
+theme: null
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+
+locale: en-US
+logo: /assets/img/avatar.png
+repository: <your-username>/<your-repo>
+plugins:
+  - jekyll-include-cache
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+author:
   name: "Bhuvana Nagaraj"
-  title: "Software Engineer | QA Automation | AI/ML Enthusiast"
-  location: "San Mateo, California"
-  email: "bhuvana.nagaraj.work@gmail.com"
-  phone: "+1-520-491-9476"
-  github: "https://github.com/Bhuvana-Nagaraj-gowda"
-  linkedin: "https://linkedin.com/in/bhuvana-nagaraj04"
-  website: "https://your-portfolio-site.com"   # optional if you host one
+  avatar: /assets/img/avatar.png
+  bio: "SWE (Samsung alum). QA Automation • Camera stack • AI/ML."
+  location: "San Mateo, CA"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/Bhuvana-Nagaraj-gowda"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://linkedin.com/in/bhuvana-nagaraj04"
+    - label: "Email"
+      icon: "fas fa-envelope"
+      url: "mailto:bhuvana.nagaraj.work@gmail.com"
 
-education:
-  - institution: "Northern Arizona University"
-    degree: "M.S. in Computer Science"
-    graduation: "Dec 2025"
-    gpa: "3.75/4"
-    coursework: ["Data Structures", "Deep Learning", "Machine Learning", "Artificial Intelligence", "Systems Software", "Algorithms", "Database", "LLMs"]
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
 
-experience:
-  - company: "Samsung Research"
-    role: "Senior Associate Engineer"
-    duration: "July 2018 – Jan 2024"
-    location: "Bangalore, India"
-    highlights:
-      - "Developed & commercialized Galaxy camera app modes (Photo, Video, HDR, Night, Pro, Macro)."
-      - "Optimized high-res image capture (32MP/48MP), commercialized on Galaxy A series (12M+ sales)."
-      - "Enhanced CPU runtime by 26% via HAL/kernel/driver optimization."
-      - "Led AI/ML ad validation on Smart TVs & Galaxy devices using TensorFlow + OpenCV."
-      - "Integrated real-time ad monitoring into CI/CD pipelines, reducing manual effort by 70%."
+defaults:
+  - scope: { path: "", type: "projects" }
+    values: { layout: single, author_profile: true }
+  - scope: { path: "" }
+    values: { layout: home, classes: wide }
 
-projects:
-  - name: "Explainable AI for IoT Cybersecurity"
-    tools: ["TensorFlow", "SMOTE", "Python"]
-    description: "Built an FNN model with focal loss to detect 28 IoT cyberattacks with 76% accuracy."
-  - name: "Digital Advertisement Detection"
-    tools: ["CNN", "TensorFlow", "OpenCV", "Docker", "Tizen"]
-    description: "Deployed real-time ad validation on Samsung devices with scalable Docker execution."
-
-skills:
-  programming: ["Python", "Java", "C++", "C", "JavaScript (Node.js, React)", "SQL/NoSQL", "Shell"]
-  automation: ["Selenium", "Cypress", "Appium", "JUnit", "PyTest", "TestNG", "Postman", "REST Assured"]
-  cloud_infra: ["AWS (EC2, S3, Lambda)", "GCP (BigQuery, Pub/Sub)", "Docker", "Kubernetes", "Zookeeper", "Firebase"]
-  data_eng: ["Apache Kafka", "Cassandra", "ElasticSearch", "ETL Pipelines", "Logstash", "ProtoBufs", "Tableau"]
-  ai_ml: ["TensorFlow", "Scikit-learn", "OpenCV", "CNN/FNN", "Explainable AI", "SMOTE"]
-  practices: ["Agile/Scrum", "CI/CD (Jenkins, GitHub Actions)", "Test Plan Design", "Code Reviews"]
-
-recognitions:
-  - "Samsung Spot Award (Apr 2021) – Successful completion of S21 & S22 camera projects"
-  - "Samsung Spot Award (Apr 2023) – Ads tracking integration for U.S. market"
-
+paginate: 6
+paginate_path: "/page:num/"
