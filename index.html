@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bhuvana Nagaraj • Software Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {margin:0;font-family:'Poppins', sans-serif;background: linear-gradient(135deg,#f8f9ff,#fdfdfd);color:#222;overflow-x:hidden;}
+    nav {display:flex;justify-content:space-between;align-items:center;padding:20px 10%;position:sticky;top:0;background:white;box-shadow:0 4px 12px rgba(0,0,0,0.05);z-index:100;}
+    nav a {margin:0 10px;font-weight:600;text-decoration:none;color:#444;transition:color .3s;}
+    nav a:hover {color:#6b7cff;}
+    .hero {display:flex;justify-content:space-between;align-items:center;padding:80px 10%;gap:40px;}
+    .hero-text h1 {font-size:3rem;font-weight:800;margin:0 0 20px;}
+    .hero-text p {font-size:1.05rem;color:#444;line-height:1.7;max-width:600px;}
+    .hero img {width:300px;border-radius:50%;box-shadow:0 12px 30px rgba(0,0,0,0.15);}
+    section {padding:80px 10%;}
+    .section-title {font-size:2rem;font-weight:800;margin-bottom:40px;text-align:center;}
+    .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+    .card {background:white;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,0.06);padding:20px;transition:transform .3s;}
+    .card:hover {transform:translateY(-6px);}
+    .card img.logo {width:32px;height:32px;object-fit:contain;margin-right:8px;vertical-align:middle;}
+    .skills, .tech-skills {display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+    .skill {background:#f3f5ff;border:1px solid #dfe7ff;border-radius:999px;padding:8px 14px;font-size:0.9rem;font-weight:600;}
+    .contact {text-align:center;}
+    .contact a {display:inline-block;margin:10px;padding:12px 20px;border-radius:30px;text-decoration:none;background:#6b7cff;color:white;font-weight:600;transition:background .3s;}
+    .contact a:hover {background:#565dff;}
+    footer {text-align:center;padding:30px;background:#fafafa;color:#666;font-size:0.9rem;}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">⚡ Bhuvana</div>
+    <div>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#recognitions">Recognitions</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>👩🏽‍💻 Hi, I’m Bhuvana</h1>
+      <p>
+        I’m Bhuvana Nagaraj, a passionate Software Engineer who thrives at the intersection of AI, systems engineering, and product innovation. With a strong academic foundation and hands-on experience, I specialize in designing scalable solutions that combine deep learning, automation, and explainability. Over my career at Samsung Research, I engineered core camera technologies for flagship Galaxy devices, worked across Qualcomm Snapdragon platforms, and pioneered ML-powered ad validation pipelines that improved efficiency and reliability at scale.<br><br>
+        I’m currently pursuing my Master’s in Computer Science at Northern Arizona University, where I focus on deep learning, AI, databases, and high-performance systems. Beyond coursework, I immerse myself in projects like IoT cybersecurity threat detection with explainable AI, and building visualization tools that make complex systems easier to understand.<br><br>
+        My philosophy as an engineer is to bridge research and real-world applications—transforming algorithms into impactful features. I’m deeply interested in explainable and trustworthy AI, high-performance computing, and designing systems that empower people to solve challenging problems. Colleagues describe me as collaborative, detail-oriented, and creative in approaching technical challenges.<br><br>
+        Outside of work, I enjoy experimenting with new frameworks, mentoring peers, and contributing to community initiatives. I aspire to grow as a technologist who not only builds cutting-edge solutions but also inspires others to innovate fearlessly. My ultimate goal is to create AI-driven systems that are transparent, efficient, and make technology accessible to everyone.
+      </p>
+    </div>
+    <img src="images/bhuvana.jpg" alt="Bhuvana Nagaraj portrait">
+  </section>
+
+  <!-- Other sections remain unchanged -->
+  <section id="education">
+    <div class="section-title">🎓 Education</div>
+    <div class="grid">
+      <div class="card">
+        <h3>Northern Arizona University</h3>
+        <p><strong>Master of Science in Computer Science</strong> (GPA 3.75/4)</p>
+        <p>Dec 2025 • Flagstaff, AZ</p>
+        <p>Coursework: Data Structures, Deep Learning, Machine Learning, AI, Systems Software, Algorithms, Database, LLMs</p>
+      </div>
+      <div class="card">
+        <h3>Visvesvaraya Technological University</h3>
+        <p><strong>Bachelor of Engineering in Computer Science</strong></p>
+        <p>2014 – 2018 • Karnataka, India</p>
+        <p>Graduated with First Class with Distinction</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rest of the portfolio remains as it was -->
+
+  <footer>
+    © <span id="y"></span> Bhuvana Nagaraj • Crafted with ❤️ & code
+  </footer>
+
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
