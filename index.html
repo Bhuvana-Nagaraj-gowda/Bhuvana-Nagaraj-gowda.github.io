@@ -133,8 +133,8 @@
                     <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="gradient-text">Bhuvana Nagaraj</span></h1>
                     <h2 class="text-2xl md:text-3xl font-semibold mb-6">Software Engineer </h2>
                     <p class="text-lg mb-8 text-gray-600 dark:text-gray-300 max-w-lg">
-                        I am a Master’s in Computer Science at Northern Arizona University (Dec 2025, GPA 3.75) with 5+ years of experience at Samsung Research as a Senior Associate Engineer. My expertise spans C/C++, Python, Java, TensorFlow, CI/CD pipelines, automation frameworks (Selenium, Cypress, Appium), and cloud platforms (AWS, GCP, Docker, Kubernetes). At Samsung, I developed and commercialized Galaxy camera features (HDR, Night, Portrait, Pro, Macro), optimized capture time by 34%, and delivered 32/48 MP imaging on devices with 12M+ global sales. I also improved CPU runtime by 26% through kernel and driver optimizations and built AI-driven ad validation pipelines with TensorFlow and OpenCV that reduced manual QA by 70%. My projects include Explainable AI for IoT cybersecurity, achieving 76% detection accuracy on rare attacks using focal loss and SMOTE. Recognized with multiple Samsung Spot Awards, I bring a track record of delivering scalable, reliable, and intelligent systems that bridge engineering, automation, and machine learning.
-                    </p>
+                       I am a Master’s in Computer Science student at Northern Arizona University, graduating in Dec 2025. With 5+ years at Samsung Research, I developed flagship Galaxy camera features, optimized performance, and built AI-driven ad validation systems. My expertise spans C/C++, Python, TensorFlow, CI/CD automation, and cloud platforms, and I’m passionate about creating scalable, intelligent systems that bridge engineering and AI. 
+					</p>
                     <div class="flex space-x-4">
                         <a href="#contact" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity">
                             Contact Me
@@ -193,25 +193,59 @@
                                 Northern Arizona University,  Dec - 2025
                             </p>
                         </div>
-                        
-                        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-                            <div class="flex items-center mb-4">
-                                <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10 mr-4">
-                                    <i class="fas fa-briefcase text-secondary-light dark:text-secondary-dark"></i>
-                                </div>
-                                <h4 class="font-semibold">Experience</h4>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300">
-                                Senior Frontend Developer<br>
-                                TechCorp Inc., 2020-Present
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+<!-- Experience Section -->
+<section id="experience" class="py-20 bg-gray-50 dark:bg-gray-900">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Experience</span></h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+      
+      <!-- Samsung Research -->
+      <div class="experience-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Samsung Research</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            Senior Associate Engineer | July 2018 – Jan 2024 | Bangalore, India
+          </p>
+          <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+            <li>Developed and commercialized Galaxy camera modes (Photo, Video, Portrait, HDR, Night, Macro, Pro, Slow-Motion).</li>
+            <li>Worked on Galaxy S/Note/Tab series, Foldables (Z-Fold/Z-Flip), and A/M series with Snapdragon processors.</li>
+            <li>Implemented core camera algorithms in C/C++ at HAL: sensor bring-up, firmware, kernel drivers, and performance optimization.</li>
+            <li>Delivered 32 & 48 MP high-resolution capture, optimized capture time by 34%, deployed on Galaxy A60/A70/A80 (12M+ global sales).</li>
+            <li>Enhanced CPU runtime by 26% with Android native optimizations, buffer handling, and driver calibration.</li>
+            <li>Conducted Systrace profiling, JUnit testing, codebase migration, and feature commercialization.</li>
+            <li>Collaborated with cross-functional teams across Image Quality, Apps, Framework, Hardware, Solutions, and QA.</li>
+            <li>Integrated real-time ad monitoring into CI/CD pipelines, reducing manual validation by 70% and improving detection reliability.</li>
+            <li>Designed AI/ML-driven ad validation for Smart TV and Galaxy Ads with TensorFlow + OpenCV for on-screen content verification.</li>
+            <li>Resolved 200+ production issues with &lt;4 days resolution and &lt;3% rejection ratio, with 250+ codebase commits.</li>
+          </ul>
+        </div>
+      </div>
 
+      <!-- Internship -->
+      <div class="experience-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Samsung Research</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            Software Engineer Intern
+          </p>
+          <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+            <li>Built a Single Sign-On (SSO) CAS with Java Servlets, WebSockets, and Digital Certificates on Apache Tomcat.</li>
+            <li>Developed interactive real-time data visualizations (box plots, heatmaps, sparklines) with React, D3.js, and Ignite UI.</li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+                
     <!-- Projects Section -->
     <section id="projects" class="py-20">
         <div class="container mx-auto px-6">
@@ -226,14 +260,14 @@
                              class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">E-commerce Platform</h3>
+                        <h3 class="text-xl font-semibold mb-2">Ad Detection on Tizen</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            A full-featured online store with cart functionality, user authentication, and payment processing.
+                            Real-time on-device ad validation using OpenCV + TensorFlow with ACR data; Dockerized for scalable deployment on Samsung devices.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">React</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Node.js</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">MongoDB</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">TensorFlow</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">OpenCV</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Docker</span>
                         </div>
                         <div class="flex space-x-3">
                             <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">Live Demo</a>
@@ -250,14 +284,14 @@
                              class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Task Management App</h3>
+                        <h3 class="text-xl font-semibold mb-2">Explainable IoT Threat Detection</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            A productivity application for organizing tasks with drag-and-drop functionality and team collaboration.
+                            FNN with focal loss on IoT-23 to classify 28 attacks; SMOTE for imbalance handling; SHAP for model insights and mitigation planning.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Vue.js</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Firebase</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">TailwindCSS</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">TensorFlow</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">SMOTE</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">XAI/SHAP</span>
                         </div>
                         <div class="flex space-x-3">
                             <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">Live Demo</a>
@@ -274,14 +308,14 @@
                              class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Weather Dashboard</h3>
+                        <h3 class="text-xl font-semibold mb-2">Galaxy Camera HAL Optimizations</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Real-time weather application with 5-day forecasts, location search, and interactive maps.
+                            C/C++ at Android HAL: sensor bring-up, driver tuning, and capture pipeline improvements; reduced capture time and boosted runtime.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">JavaScript</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">API Integration</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">CSS3</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">C/C++</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Android HAL</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Performance</span>
                         </div>
                         <div class="flex space-x-3">
                             <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">Live Demo</a>
@@ -308,31 +342,31 @@
                 <!-- Skill 1 -->
                 <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-                        <i class="fab fa-react text-3xl text-primary-light dark:text-primary-dark"></i>
+                        <i class="fab fa-python text-3xl text-primary-light dark:text-primary-dark"></i>
                     </div>
-                    <h3 class="font-semibold mb-2">React</h3>
+                    <h3 class="font-semibold mb-2">Python</h3>
                     <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 90%"></div>
+                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 95%"></div>
                     </div>
                 </div>
                 
                 <!-- Skill 2 -->
                 <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-                        <i class="fab fa-js text-3xl text-primary-light dark:text-primary-dark"></i>
+                        <i class="fas fa-cogs text-3xl text-primary-light dark:text-primary-dark"></i>
                     </div>
-                    <h3 class="font-semibold mb-2">JavaScript</h3>
+                    <h3 class="font-semibold mb-2">C/C++ & Java</h3>
                     <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 95%"></div>
+                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 90%"></div>
                     </div>
                 </div>
                 
                 <!-- Skill 3 -->
                 <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-                        <i class="fab fa-vuejs text-3xl text-primary-light dark:text-primary-dark"></i>
+                        <i class="fas fa-brain text-3xl text-primary-light dark:text-primary-dark"></i>
                     </div>
-                    <h3 class="font-semibold mb-2">Vue.js</h3>
+                    <h3 class="font-semibold mb-2">TensorFlow/Pytorch</h3>
                     <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
                         <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 85%"></div>
                     </div>
@@ -341,20 +375,20 @@
                 <!-- Skill 4 -->
                 <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-                        <i class="fab fa-css3-alt text-3xl text-primary-light dark:text-primary-dark"></i>
+                        <i class="fab fa-react text-3xl text-primary-light dark:text-primary-dark"></i>
                     </div>
-                    <h3 class="font-semibold mb-2">CSS/Tailwind</h3>
+                    <h3 class="font-semibold mb-2">JavaScript/React</h3>
                     <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 92%"></div>
+                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 88%"></div>
                     </div>
                 </div>
                 
                 <!-- Skill 5 -->
                 <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-                        <i class="fab fa-node-js text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                        <i class="fab fa-docker text-3xl text-secondary-light dark:text-secondary-dark"></i>
                     </div>
-                    <h3 class="font-semibold mb-2">Node.js</h3>
+                    <h3 class="font-semibold mb-2">Docker/Kubernetes</h3>
                     <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
                         <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 80%"></div>
                     </div>
@@ -363,33 +397,33 @@
                 <!-- Skill 6 -->
                 <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-                        <i class="fas fa-database text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                        <i class="fas fa-vial text-3xl text-secondary-light dark:text-secondary-dark"></i>
                     </div>
-                    <h3 class="font-semibold mb-2">MongoDB</h3>
+                    <h3 class="font-semibold mb-2">Selenium/Appium/Cypress</h3>
                     <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 75%"></div>
+                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 82%"></div>
                     </div>
                 </div>
                 
                 <!-- Skill 7 -->
                 <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-                        <i class="fab fa-git-alt text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                        <i class="fas fa-cloud text-3xl text-secondary-light dark:text-secondary-dark"></i>
                     </div>
-                    <h3 class="font-semibold mb-2">Git</h3>
+                    <h3 class="font-semibold mb-2">AWS/GCP</h3>
                     <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 88%"></div>
+                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 78%"></div>
                     </div>
                 </div>
                 
                 <!-- Skill 8 -->
                 <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-                        <i class="fas fa-mobile-alt text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                        <i class="fas fa-microchip text-3xl text-secondary-light dark:text-secondary-dark"></i>
                     </div>
-                    <h3 class="font-semibold mb-2">Responsive Design</h3>
+                    <h3 class="font-semibold mb-2">Linux/Perf/Kernel</h3>
                     <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 95%"></div>
+                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 86%"></div>
                     </div>
                 </div>
             </div>
@@ -405,8 +439,7 @@
                 <div class="md:w-1/2 mb-12 md:mb-0 md:pr-8">
                     <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
                     <p class="mb-8 text-gray-600 dark:text-gray-300">
-                        Feel free to reach out to me for project inquiries, collaborations, or just to say hello. 
-                        I'll get back to you as soon as possible.
+                       If you have any questions or would like to know more about my work, feel free to reach out. I’ll be happy to connect.
                     </p>
                     
                     <div class="space-y-6">
@@ -416,7 +449,7 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold">Email</h4>
-                                <p class="text-gray-600 dark:text-gray-300">hello@example.com</p>
+                                <p class="text-gray-600 dark:text-gray-300">bhuvana.nagaraj.work@gmail.com</p>
                             </div>
                         </div>
                         
@@ -426,7 +459,7 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold">Phone</h4>
-                                <p class="text-gray-600 dark:text-gray-300">+1 (555) 123-4567</p>
+                                <p class="text-gray-600 dark:text-gray-300">+1 (520) 491-9476</p>
                             </div>
                         </div>
                         
@@ -436,18 +469,18 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold">Location</h4>
-                                <p class="text-gray-600 dark:text-gray-300">San Francisco, CA</p>
+                                <p class="text-gray-600 dark:text-gray-300">San Mateo, CA</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="mt-8">
+                     <div class="mt-8">
                         <h4 class="font-semibold mb-4">Follow Me</h4>
                         <div class="flex space-x-4">
-                            <a href="#" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                            <a href="https://github.com/Bhuvana-Nagaraj-gowda" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="#" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                            <a href="https://linkedin.com/in/bhuvana-nagaraj04" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                             <a href="#" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
@@ -496,8 +529,8 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <a href="#" class="text-2xl font-bold gradient-text">Portfolio</a>
-                    <p class="mt-2 text-gray-600 dark:text-gray-300">© 2023 All Rights Reserved</p>
+                    <a href="#" class="text-2xl font-bold gradient-text">Bhuvana</a>
+                    <p class="mt-2 text-gray-600 dark:text-gray-300">© 2025 All Rights Reserved</p>
                 </div>
                 
                 <div class="flex space-x-6">
