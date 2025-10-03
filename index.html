@@ -1,389 +1,595 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bhuvana Nagaraj | Software Engineer (AI/ML • Systems)</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: { light: '#6b7cff', dark: '#4f5bff' },
-            secondary: { light: '#10b981', dark: '#059669' }
-          },
-          animation: { 'fade-in': 'fadeIn .5s ease-in-out', 'slide-up': 'slideUp .5s ease-out' },
-          keyframes: {
-            fadeIn: { '0%': {opacity:0}, '100%': {opacity:1} },
-            slideUp: { '0%': {transform:'translateY(20px)', opacity:0}, '100%': {transform:'translateY(0)', opacity:1} }
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#3b82f6',
+                            dark: '#2563eb'
+                        },
+                        secondary: {
+                            light: '#10b981',
+                            dark: '#059669'
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
-  <style>
-    .gradient-text{background-clip:text;-webkit-background-clip:text;color:transparent}
-    .light .gradient-text{background-image:linear-gradient(45deg,#6b7cff,#10b981)}
-    .dark .gradient-text{background-image:linear-gradient(45deg,#8aa7ff,#34d399)}
-    .project-card{transition:all .3s ease}
-    .project-card:hover{transform:translateY(-5px)}
-    .theme-toggle{transition:all .3s ease}
-    .theme-toggle:hover{transform:rotate(30deg)}
-    .nav-link{position:relative}
-    .nav-link::after{content:'';position:absolute;width:0;height:2px;bottom:-2px;left:0;background-color:currentColor;transition:width .3s ease}
-    .nav-link:hover::after{width:100%}
-  </style>
+    </script>
+    <style>
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .light .gradient-text {
+            background-image: linear-gradient(45deg, #3b82f6, #10b981);
+        }
+        .dark .gradient-text {
+            background-image: linear-gradient(45deg, #60a5fa, #34d399);
+        }
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .theme-toggle {
+            transition: all 0.3s ease;
+        }
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
 </head>
 <body class="light bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
-  <!-- Header/Navigation -->
-  <header class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
-    <div class="container mx-auto px-6 py-4">
-      <nav class="flex items-center justify-between">
-        <a href="#home" class="text-2xl font-bold gradient-text">Bhuvana</a>
-        <div class="hidden md:flex space-x-8">
-          <a href="#home" class="nav-link">Home</a>
-          <a href="#about" class="nav-link">About</a>
-          <a href="#projects" class="nav-link">Projects</a>
-          <a href="#skills" class="nav-link">Skills</a>
-          <a href="#contact" class="nav-link">Contact</a>
-        </div>
-        <div class="flex items-center space-x-4">
-          <a href="resume/Bhuvana_Nagaraj_SDE.pdf" target="_blank" class="hidden md:inline-flex px-3 py-2 rounded-lg bg-primary-light text-white text-sm hover:opacity-90">Resume</a>
-          <button id="theme-toggle" class="theme-toggle p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700" title="Toggle theme">
-            <i class="fas fa-moon dark:hidden"></i>
-            <i class="fas fa-sun hidden dark:block"></i>
-          </button>
-          <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700" aria-label="Menu">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-      </nav>
-    </div>
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
-      <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#contact" class="nav-link">Contact</a>
-        <a href="resume/Bhuvana_Nagaraj_SDE.pdf" target="_blank" class="px-4 py-2 rounded-lg bg-primary-light text-white">Resume</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section id="home" class="min-h-screen flex items-center pt-20">
-    <div class="container mx-auto px-6 py-20">
-      <div class="flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 mb-12 md:mb-0 animate-fade-in">
-          <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="gradient-text">Bhuvana Nagaraj</span></h1>
-          <h2 class="text-2xl md:text-3xl font-semibold mb-6">Software Engineer — AI/ML • Systems • QA</h2>
-          <p class="text-lg mb-8 text-gray-700 dark:text-gray-300 max-w-xl">
-            Ex‑Samsung Research engineer who shipped Galaxy camera features and built ML‑driven ad‑validation pipelines. 
-            Now an M.S. CS student at Northern Arizona University (GPA 3.75/4), focused on explainable AI, high‑performance systems, and reliable automation.
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <a href="#contact" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90">Contact Me</a>
-            <a href="#projects" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">View Work</a>
-            <a href="https://github.com/Bhuvana-Nagaraj-gowda" target="_blank" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center gap-2"><i class="fab fa-github"></i>GitHub</a>
-            <a href="https://linkedin.com/in/bhuvana-nagaraj04" target="_blank" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center gap-2"><i class="fab fa-linkedin"></i>LinkedIn</a>
-          </div>
-        </div>
-        <div class="md:w-1/2 flex justify-center animate-slide-up">
-          <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary-light dark:border-primary-dark">
-            <img src="images/bhuvana.jpg" alt="Bhuvana portrait" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop'">
-            <div class="absolute inset-0 bg-primary-light dark:bg-primary-dark opacity-10"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-20 bg-gray-100 dark:bg-gray-800">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-12 text-center">About <span class="gradient-text">Me</span></h2>
-      <div class="flex flex-col md:flex-row items-start md:items-center gap-10">
-        <div class="md:w-1/3 w-full">
-          <div class="w-64 h-64 rounded-lg overflow-hidden shadow-lg mx-auto">
-            <img src="images/collage.jpg" alt="Work collage" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1000&auto=format&fit=crop'">
-          </div>
-        </div>
-        <div class="md:w-2/3 w-full md:pl-6">
-          <h3 class="text-2xl font-semibold mb-4">Who I Am</h3>
-          <p class="mb-6 text-gray-700 dark:text-gray-300 leading-7">
-            I’m a software engineer who enjoys turning ideas into fast, tested, and human‑friendly software. At Samsung Research, I 
-            commercialized camera modes (Photo, Portrait, HDR, Night, Macro, Pro, Slow‑Mo) across Galaxy S/Note/Tab and foldables, 
-            implemented HAL‑level algorithms in C/C++, and improved capture time by ~34% with kernel/driver tuning. I also built ML ad‑validation 
-            pipelines (TensorFlow + OpenCV) and integrated real‑time monitoring into CI/CD to cut manual checks by ~70%.
-            At NAU, I focus on deep learning, explainable AI, systems, and databases, and recently delivered an IoT threat‑detection model 
-            (FNN + focal loss) with XAI insights on the IoT‑23 dataset.
-          </p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-              <div class="flex items-center mb-4">
-                <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-                  <i class="fas fa-graduation-cap text-primary-light dark:text-primary-dark"></i>
+    <!-- Header/Navigation -->
+    <header class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex items-center justify-between">
+                <a href="#" class="text-2xl font-bold gradient-text">Bhuvana Nagaraj | Software Engineer</a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+					<a href="#education" class="nav-link">Education</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#contact" class="nav-link">Contact</a>
                 </div>
-                <h4 class="font-semibold">Education</h4>
-              </div>
-              <p class="text-gray-700 dark:text-gray-300">
-                M.S. Computer Science — Northern Arizona University (GPA 3.75/4), Dec 2025<br/>
-                B.E. Computer Science — VTU, First Class with Distinction
-              </p>
-            </div>
-            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-              <div class="flex items-center mb-4">
-                <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10 mr-4">
-                  <i class="fas fa-briefcase text-secondary-light dark:text-secondary-dark"></i>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="theme-toggle p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
-                <h4 class="font-semibold">Experience</h4>
-              </div>
-              <p class="text-gray-700 dark:text-gray-300">
-                Senior Associate Engineer — Samsung Research (2018–2024)<br/>
-                Software Engineer Intern — Samsung Research
-              </p>
-            </div>
-          </div>
-          <div class="mt-6 text-sm text-gray-600 dark:text-gray-400">🏆 Samsung Spot Awards (2021, 2023) • Oracle Cloud & GenAI Certs • Google Ads Cert</div>
+            </nav>
         </div>
-      </div>
-    </div>
-  </section>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+					<a href="#education" class="nav-link">Education</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </header>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-20">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Projects</span></h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Project 1 -->
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
-          <div class="h-48 overflow-hidden">
-            <img src="images/iot-xai.jpg" alt="IoT XAI" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop'">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Explainable IoT Threat Detection</h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">FNN + focal loss on IoT‑23 (2.5M samples) with SMOTE; delivered XAI insights for 28 attack classes.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">TensorFlow</span>
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">XAI</span>
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">SMOTE</span>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-6 py-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0 animate-fade-in">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="gradient-text">Bhuvana Nagaraj</span></h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Software Engineer </h2>
+                    <p class="text-lg mb-8 text-gray-600 dark:text-gray-300 max-w-lg">
+                        I am a Master’s in Computer Science at Northern Arizona University (Dec 2025, GPA 3.75) with 5+ years of experience at Samsung Research as a Senior Associate Engineer. My expertise spans C/C++, Python, Java, TensorFlow, CI/CD pipelines, automation frameworks (Selenium, Cypress, Appium), and cloud platforms (AWS, GCP, Docker, Kubernetes). At Samsung, I developed and commercialized Galaxy camera features (HDR, Night, Portrait, Pro, Macro), optimized capture time by 34%, and delivered 32/48 MP imaging on devices with 12M+ global sales. I also improved CPU runtime by 26% through kernel and driver optimizations and built AI-driven ad validation pipelines with TensorFlow and OpenCV that reduced manual QA by 70%. My projects include Explainable AI for IoT cybersecurity, achieving 76% detection accuracy on rare attacks using focal loss and SMOTE. Recognized with multiple Samsung Spot Awards, I bring a track record of delivering scalable, reliable, and intelligent systems that bridge engineering, automation, and machine learning.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity">
+                            Contact Me
+                        </a>
+                        <a href="#projects" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                            View Work
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center animate-slide-up">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary-light dark:border-primary-dark">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             alt="Profile" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-primary-light dark:bg-primary-dark opacity-10"></div>
+                    </div>
+                </div>
             </div>
-            <div class="flex space-x-3">
-              <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">Case Study</a>
-            </div>
-          </div>
         </div>
-        <!-- Project 2 -->
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
-          <div class="h-48 overflow-hidden">
-            <img src="images/tizen-ads.jpg" alt="Tizen Ads" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1200&auto=format&fit=crop'">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Real‑time Ad Validation (Tizen)</h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">OpenCV + TensorFlow pipelines validating on‑screen ads, Dockerized and integrated with CI/CD.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">OpenCV</span>
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">TensorFlow</span>
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Docker</span>
-            </div>
-            <div class="flex space-x-3">
-              <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">Overview</a>
-            </div>
-          </div>
-        </div>
-        <!-- Project 3 -->
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
-          <div class="h-48 overflow-hidden">
-            <img src="images/galaxy-camera.jpg" alt="Galaxy Camera" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=1200&auto=format&fit=crop'">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Galaxy Camera Systems</h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">C/C++ camera HAL, sensor bring‑up, kernel drivers; shipped across S/Note/Tab & foldables with perf wins.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">C/C++</span>
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Android HAL</span>
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Performance</span>
-            </div>
-            <div class="flex space-x-3">
-              <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">Highlights</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="text-center mt-12">
-        <a href="#projects" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 inline-flex items-center">View All Projects <i class="fas fa-arrow-right ml-2"></i></a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="py-20 bg-gray-100 dark:bg-gray-800">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Skills</span></h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <!-- React/JS replaced with resume skills -->
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-          <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-            <i class="fas fa-code text-2xl text-primary-light dark:text-primary-dark"></i>
-          </div>
-          <h3 class="font-semibold mb-2">Languages</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Python, Java, C/C++, JavaScript/TypeScript, SQL/NoSQL, Shell</p>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">About <span class="gradient-text">Me</span></h2>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="w-64 h-64 rounded-lg overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                             alt="About" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-semibold mb-4">Who I Am</h3>
+                    <p class="mb-6 text-gray-600 dark:text-gray-300">
+                        I am a Master’s in Computer Science candidate at Northern Arizona University (Dec 2025, GPA 3.75) with 6+ years of experience at Samsung Research as a Senior Associate Engineer.
+						My expertise spans C/C++, Python, Java, TensorFlow, CI/CD pipelines, automation frameworks (Selenium, Cypress, Appium), and cloud platforms (AWS, GCP, Docker, Kubernetes).
+						At Samsung, I developed and commercialized Galaxy camera features (HDR, Night, Portrait, Pro, Macro), optimized capture time by 34%, and delivered 32/48 MP imaging on devices with 12M+ global sales. I also improved CPU runtime by 26% through kernel and driver optimizations and built AI-driven ad validation pipelines with TensorFlow and OpenCV that reduced manual QA by 70%.
+						My projects include Explainable AI for IoT cybersecurity, achieving 76% detection accuracy on rare attacks using focal loss and SMOTE. 
+						Recognized with multiple Samsung Spot Awards,I bring a track record of delivering scalable, reliable, and intelligent systems that bridge engineering, automation, and machine learning.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center mb-4">
+                                <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
+                                    <i class="fas fa-graduation-cap text-primary-light dark:text-primary-dark"></i>
+                                </div>
+                                <h4 class="font-semibold">Education</h4>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Master’s in Computer Science<br>
+                                Northern Arizona University,  Dec - 2025
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center mb-4">
+                                <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10 mr-4">
+                                    <i class="fas fa-briefcase text-secondary-light dark:text-secondary-dark"></i>
+                                </div>
+                                <h4 class="font-semibold">Experience</h4>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Senior Frontend Developer<br>
+                                TechCorp Inc., 2020-Present
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-          <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-            <i class="fas fa-robot text-2xl text-primary-light dark:text-primary-dark"></i>
-          </div>
-          <h3 class="font-semibold mb-2">ML / Data</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300">TensorFlow, scikit‑learn, OpenCV, CNN/FNN, XAI, Kafka, Cassandra, ElasticSearch</p>
-        </div>
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-          <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-            <i class="fas fa-cloud text-2xl text-secondary-light dark:text-secondary-dark"></i>
-          </div>
-          <h3 class="font-semibold mb-2">DevOps / Cloud</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Docker, Kubernetes, Jenkins, GitHub Actions, AWS, GCP</p>
-        </div>
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-          <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-            <i class="fas fa-tools text-2xl text-secondary-light dark:text-secondary-dark"></i>
-          </div>
-          <h3 class="font-semibold mb-2">Testing & Tools</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Selenium, Cypress, Appium, JUnit, PyTest, TestNG, Postman, REST Assured</p>
-        </div>
-      </div>
-      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-          <h3 class="font-semibold mb-3">Certifications</h3>
-          <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm space-y-1">
-            <li>Oracle Cloud Infrastructure Associate Architect</li>
-            <li>Oracle GenAI Professional</li>
-            <li>Oracle Cloud Professional</li>
-            <li>Google Ads Certification</li>
-          </ul>
-        </div>
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-          <h3 class="font-semibold mb-3">Recognitions</h3>
-          <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm space-y-1">
-            <li>Samsung Spot Award — Apr 2021 (Galaxy S21/S22 projects)</li>
-            <li>Samsung Spot Award — Apr 2023 (US ads tracking integration)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-20">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-12 text-center">Get In <span class="gradient-text">Touch</span></h2>
-      <div class="flex flex-col md:flex-row">
-        <div class="md:w-1/2 mb-12 md:mb-0 md:pr-8">
-          <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
-          <p class="mb-8 text-gray-700 dark:text-gray-300">For roles or collaborations, the fastest way to reach me is email.</p>
-          <div class="space-y-6">
-            <div class="flex items-start">
-              <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4"><i class="fas fa-envelope text-primary-light dark:text-primary-dark"></i></div>
-              <div><h4 class="font-semibold">Email</h4><p class="text-gray-700 dark:text-gray-300">bhuvana.nagaraj.work@gmail.com</p></div>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Projects</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                             alt="Project 1" 
+                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            A full-featured online store with cart functionality, user authentication, and payment processing.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">React</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Node.js</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">MongoDB</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">Live Demo</a>
+                            <a href="#" class="text-gray-500 hover:underline">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                             alt="Project 2" 
+                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Task Management App</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            A productivity application for organizing tasks with drag-and-drop functionality and team collaboration.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Vue.js</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Firebase</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">TailwindCSS</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">Live Demo</a>
+                            <a href="#" class="text-gray-500 hover:underline">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" 
+                             alt="Project 3" 
+                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Weather Dashboard</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Real-time weather application with 5-day forecasts, location search, and interactive maps.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">API Integration</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">CSS3</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">Live Demo</a>
+                            <a href="#" class="text-gray-500 hover:underline">Source Code</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="flex items-start">
-              <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4"><i class="fas fa-map-marker-alt text-primary-light dark:text-primary-dark"></i></div>
-              <div><h4 class="font-semibold">Location</h4><p class="text-gray-700 dark:text-gray-300">Flagstaff, AZ • Open to relocation/remote</p></div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors inline-flex items-center">
+                    View All Projects <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
-          </div>
-          <div class="mt-8">
-            <h4 class="font-semibold mb-4">Follow Me</h4>
-            <div class="flex space-x-4">
-              <a href="https://github.com/Bhuvana-Nagaraj-gowda" target="_blank" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"><i class="fab fa-github"></i></a>
-              <a href="https://linkedin.com/in/bhuvana-nagaraj04" target="_blank" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
         </div>
-        <div class="md:w-1/2">
-          <!-- Static form markup for UI only -->
-          <form class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm" onsubmit="event.preventDefault(); alert('Thanks! Please email me instead: bhuvana.nagaraj.work@gmail.com');">
-            <div class="mb-6">
-              <label for="name" class="block mb-2 font-medium">Name</label>
-              <input id="name" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-transparent"/>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Skills</span></h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Skill 1 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
+                        <i class="fab fa-react text-3xl text-primary-light dark:text-primary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">React</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 2 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
+                        <i class="fab fa-js text-3xl text-primary-light dark:text-primary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">JavaScript</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 95%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 3 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
+                        <i class="fab fa-vuejs text-3xl text-primary-light dark:text-primary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Vue.js</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 4 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
+                        <i class="fab fa-css3-alt text-3xl text-primary-light dark:text-primary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">CSS/Tailwind</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 92%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 5 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
+                        <i class="fab fa-node-js text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Node.js</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 6 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
+                        <i class="fas fa-database text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">MongoDB</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 7 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
+                        <i class="fab fa-git-alt text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Git</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 88%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 8 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
+                        <i class="fas fa-mobile-alt text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Responsive Design</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 95%"></div>
+                    </div>
+                </div>
             </div>
-            <div class="mb-6">
-              <label for="email" class="block mb-2 font-medium">Email</label>
-              <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-transparent"/>
-            </div>
-            <div class="mb-6">
-              <label for="subject" class="block mb-2 font-medium">Subject</label>
-              <input id="subject" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-transparent"/>
-            </div>
-            <div class="mb-6">
-              <label for="message" class="block mb-2 font-medium">Message</label>
-              <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-transparent"></textarea>
-            </div>
-            <button class="w-full px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90">Send Message</button>
-          </form>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 dark:bg-gray-800 py-12">
-    <div class="container mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-6 md:mb-0">
-          <a href="#home" class="text-2xl font-bold gradient-text">Bhuvana</a>
-          <p class="mt-2 text-gray-700 dark:text-gray-300">© <span id="year"></span> All Rights Reserved</p>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">Get In <span class="gradient-text">Touch</span></h2>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                    <p class="mb-8 text-gray-600 dark:text-gray-300">
+                        Feel free to reach out to me for project inquiries, collaborations, or just to say hello. 
+                        I'll get back to you as soon as possible.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
+                                <i class="fas fa-envelope text-primary-light dark:text-primary-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <p class="text-gray-600 dark:text-gray-300">hello@example.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
+                                <i class="fas fa-phone-alt text-primary-light dark:text-primary-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Phone</h4>
+                                <p class="text-gray-600 dark:text-gray-300">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
+                                <i class="fas fa-map-marker-alt text-primary-light dark:text-primary-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Location</h4>
+                                <p class="text-gray-600 dark:text-gray-300">San Francisco, CA</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-semibold mb-4">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <form class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm">
+                        <div class="mb-6">
+                            <label for="name" class="block mb-2 font-medium">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-transparent transition-colors">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block mb-2 font-medium">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-transparent transition-colors">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="block mb-2 font-medium">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-transparent transition-colors">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block mb-2 font-medium">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-transparent transition-colors"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="flex space-x-6">
-          <a href="#home" class="nav-link">Home</a>
-          <a href="#about" class="nav-link">About</a>
-          <a href="#projects" class="nav-link">Projects</a>
-          <a href="#contact" class="nav-link">Contact</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-gray-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold gradient-text">Portfolio</a>
+                    <p class="mt-2 text-gray-600 dark:text-gray-300">© 2023 All Rights Reserved</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
-  <script>
-    // Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    html.classList.add(savedTheme);
-    themeToggle.addEventListener('click',()=>{ html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark')?'dark':'light'); });
-
-    // Mobile Menu Toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuButton.addEventListener('click',()=> mobileMenu.classList.toggle('hidden'));
-    document.querySelectorAll('#mobile-menu a').forEach(l=> l.addEventListener('click',()=> mobileMenu.classList.add('hidden')));
-
-    // Smooth scroll offset
-    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-      anchor.addEventListener('click',function(e){
-        const id = this.getAttribute('href');
-        if(id==="#") return; e.preventDefault();
-        const el = document.querySelector(id); if(!el) return;
-        window.scrollTo({ top: el.offsetTop - 80, behavior:'smooth' });
-      });
-    });
-
-    // Simple appear animations
-    const animateOnScroll = () => {
-      const elements = document.querySelectorAll('.animate-fade-in, .animate-slide-up');
-      elements.forEach(el=>{
-        const rect = el.getBoundingClientRect().top;
-        const screen = window.innerHeight/1.2;
-        if(rect < screen){ el.style.opacity='1'; el.style.transform='translateY(0)'; }
-      });
-    };
-    document.querySelectorAll('.animate-fade-in').forEach(el=>{ el.style.opacity='0'; el.style.animation='fadeIn .5s ease-in-out forwards';});
-    document.querySelectorAll('.animate-slide-up').forEach(el=>{ el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.animation='slideUp .5s ease-out forwards';});
-    window.addEventListener('scroll', animateOnScroll);
-    window.addEventListener('load', ()=>{ document.getElementById('year').textContent = new Date().getFullYear(); animateOnScroll(); });
-  </script>
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved user preference or use system preference
+        const savedTheme = localStorage.getItem('theme') || 
+                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        html.classList.add(savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const theme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+        
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation classes when elements come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in, .animate-slide-up');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.animation = 'fadeIn 0.5s ease-in-out forwards';
+        });
+        
+        document.querySelectorAll('.animate-slide-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.animation = 'slideUp 0.5s ease-out forwards';
+        });
+        
+        // Add scroll event listener
+        window.addEventListener('scroll', animateOnScroll);
+        // Trigger once on page load
+        window.addEventListener('load', animateOnScroll);
+    </script>
 </body>
 </html>
