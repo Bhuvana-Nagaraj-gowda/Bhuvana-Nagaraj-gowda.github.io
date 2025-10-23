@@ -80,7 +80,8 @@
             width: 100%;
         }
     </style>
-	<!-- ✅ Mobile-only responsive centering (added section) -->
+	
+	<!-- ✅ Mobile-only responsive centering -->
     <style>
     @media (max-width: 768px) {
       body {
@@ -122,57 +123,82 @@
     }
     </style>
 
-    <!-- ✅ ADD: Mobile Hardening (fluid type, safe anchors, overflow guards) -->
+    <!-- ✅ ADD: Mobile Hardening (fluid type, overflow guards, bullets fix, contact alignment) -->
     <style>
-      /* ===== MOBILE HARDENING (additive only) ===== */
       :root {
         --h1: clamp(1.8rem, 4.5vw + 1rem, 3.25rem);
         --h2: clamp(1.25rem, 2.5vw + 0.9rem, 2rem);
         --pad: clamp(1rem, 2.5vw, 1.25rem);
       }
-      /* anchor offset so sections don't hide under fixed header */
       #home, #about, #experience, #projects, #skills, #contact { scroll-margin-top: 84px; }
-      /* images never overflow */
       img { max-width: 100%; height: auto; }
-      /* wrap long content to avoid horizontal scroll */
       p, a, li { overflow-wrap: anywhere; word-break: break-word; }
 
       @media (max-width: 768px) {
         html, body { width: 100%; }
         body { overflow-x: hidden; }
 
-        /* consistent padding on phones */
         .container { padding-left: var(--pad) !important; padding-right: var(--pad) !important; }
         section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 
-        /* header full bleed and tap size */
         header { left: 0; right: 0; }
         header nav a, header button { min-height: 44px; }
 
-        /* hero fluid headings and centered buttons */
         #home .flex { flex-direction: column; align-items: center; text-align: center; }
         #home h1 { font-size: var(--h1); }
         #home h2 { font-size: var(--h2); }
         #home .flex.space-x-4 { gap: .75rem; flex-wrap: wrap; justify-content: center; }
 
-        /* avatar sizing */
         #home .relative.w-64.h-64 { width: 14rem !important; height: 14rem !important; }
 
-        /* about center content */
         #about .md\:w-2\/3 { padding-left: 0 !important; }
         #about .w-64.h-64 { width: 14rem !important; height: 14rem !important; margin-inline: auto; }
 
-        /* grids collapse to one column */
         #experience .grid, #projects .grid, #skills .grid { grid-template-columns: 1fr !important; }
 
-        /* center cards */
         .experience-card, .project-card, .bg-white.dark\:bg-gray-700 { margin-inline: auto; }
 
-        /* mobile menu coverage */
         #mobile-menu { width: 100%; left: 0; right: 0; z-index: 60; }
 
-        /* contact form full width */
         #contact .md\:w-1\/2 { width: 100% !important; }
+      }
+
+      /* ===== Mobile tweaks: contact alignment + paragraph-style bullets ===== */
+      @media (max-width: 768px) {
+        /* CONTACT: clean alignment */
+        #contact .space-y-6 > .flex {
+          align-items: center !important;
+          justify-content: center !important;
+          gap: 0.75rem !important;
+          text-align: center !important;
+        }
+        #contact .space-y-6 > .flex > div:first-child {
+          margin-right: 0 !important;
+        }
+        #contact .space-y-6 h4,
+        #contact .space-y-6 p,
+        #contact .space-y-6 a {
+          text-align: center !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          display: block;
+        }
+
+        /* EXPERIENCE bullets */
+        #experience ul.list-disc {
+          list-style: none !important;
+          padding-left: 0 !important;
+          margin-left: 0 !important;
+        }
+        #experience ul.list-disc li {
+          position: relative;
+          padding-left: 1.1em;
+          text-indent: -1.1em;
+        }
+        #experience ul.list-disc li::before {
+          content: "• ";
+          font-weight: 600;
+        }
       }
     </style>
 </head>
