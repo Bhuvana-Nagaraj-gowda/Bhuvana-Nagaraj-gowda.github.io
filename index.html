@@ -80,130 +80,78 @@
             width: 100%;
         }
     </style>
-	
-	<!-- ✅ Mobile-only responsive centering -->
-    <style>
-    @media (max-width: 768px) {
-      body {
-        overflow-x: hidden;
-      }
-      #home, #about, #experience, #projects, #skills, #contact {
-        text-align: center;
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-      #home .flex {
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-      .container {
-        margin-left: auto !important;
-        margin-right: auto !important;
-      }
-      #home img, #about img {
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-      }
-      #home .flex.space-x-4, 
-      #home .flex.space-x-4 > a {
-        justify-content: center !important;
-        text-align: center !important;
-      }
-      #mobile-menu {
-        width: 100%;
-        left: 0;
-        right: 0;
-      }
-      .project-card, .bg-white.dark\:bg-gray-700 {
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-    </style>
+	<!-- ✅ Mobile overrides: left-align bullets + contact + "View my" -->
+<style>
+@media (max-width: 768px) {
+  /* ---- Experience: paragraph-style bullets, left aligned ---- */
+  #experience .experience-card ul.list-disc {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    text-align: left !important;
+  }
+  #experience .experience-card ul.list-disc li {
+    position: relative;
+    padding-left: 1.1em;   /* room for bullet */
+    text-indent: -1.1em;   /* hanging indent so wraps align with first line */
+    text-align: left !important;
+  }
+  #experience .experience-card ul.list-disc li::before {
+    content: "• ";
+    font-weight: 600;
+  }
 
-    <!-- ✅ ADD: Mobile Hardening (fluid type, overflow guards, bullets fix, contact alignment) -->
-    <style>
-      :root {
-        --h1: clamp(1.8rem, 4.5vw + 1rem, 3.25rem);
-        --h2: clamp(1.25rem, 2.5vw + 0.9rem, 2rem);
-        --pad: clamp(1rem, 2.5vw, 1.25rem);
-      }
-      #home, #about, #experience, #projects, #skills, #contact { scroll-margin-top: 84px; }
-      img { max-width: 100%; height: auto; }
-      p, a, li { overflow-wrap: anywhere; word-break: break-word; }
+  /* ---- Contact: left align all info rows ---- */
+  #contact .space-y-6 { 
+    text-align: left !important; 
+  }
+  #contact .space-y-6 > .flex {
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 0.75rem !important;
+    text-align: left !important;
+  }
+  /* keep a small gap between icon and text */
+  #contact .space-y-6 > .flex > div:first-child {
+    margin-right: 0.75rem !important;
+  }
+  #contact .space-y-6 h4,
+  #contact .space-y-6 p,
+  #contact .space-y-6 a {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    display: block;
+  }
 
-      @media (max-width: 768px) {
-        html, body { width: 100%; }
-        body { overflow-x: hidden; }
+  /* ---- Resume row (also a .flex items-start) stays left ---- */
+  #contact .flex.items-start {
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
 
-        .container { padding-left: var(--pad) !important; padding-right: var(--pad) !important; }
-        section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  /* ---- "View my" block left aligned ---- */
+  #contact .mt-8 { 
+    text-align: left !important; 
+  }
+  #contact .mt-8 h4 { 
+    text-align: left !important; 
+  }
+  #contact .mt-8 .flex {
+    justify-content: flex-start !important;  /* icons row */
+  }
 
-        header { left: 0; right: 0; }
-        header nav a, header button { min-height: 44px; }
-
-        #home .flex { flex-direction: column; align-items: center; text-align: center; }
-        #home h1 { font-size: var(--h1); }
-        #home h2 { font-size: var(--h2); }
-        #home .flex.space-x-4 { gap: .75rem; flex-wrap: wrap; justify-content: center; }
-
-        #home .relative.w-64.h-64 { width: 14rem !important; height: 14rem !important; }
-
-        #about .md\:w-2\/3 { padding-left: 0 !important; }
-        #about .w-64.h-64 { width: 14rem !important; height: 14rem !important; margin-inline: auto; }
-
-        #experience .grid, #projects .grid, #skills .grid { grid-template-columns: 1fr !important; }
-
-        .experience-card, .project-card, .bg-white.dark\:bg-gray-700 { margin-inline: auto; }
-
-        #mobile-menu { width: 100%; left: 0; right: 0; z-index: 60; }
-
-        #contact .md\:w-1\/2 { width: 100% !important; }
-      }
-
-      /* ===== Mobile tweaks: contact alignment + paragraph-style bullets ===== */
-      @media (max-width: 768px) {
-        /* CONTACT: clean alignment */
-        #contact .space-y-6 > .flex {
-          align-items: center !important;
-          justify-content: center !important;
-          gap: 0.75rem !important;
-          text-align: center !important;
-        }
-        #contact .space-y-6 > .flex > div:first-child {
-          margin-right: 0 !important;
-        }
-        #contact .space-y-6 h4,
-        #contact .space-y-6 p,
-        #contact .space-y-6 a {
-          text-align: center !important;
-          margin-left: auto !important;
-          margin-right: auto !important;
-          display: block;
-        }
-
-        /* EXPERIENCE bullets */
-        #experience ul.list-disc {
-          list-style: none !important;
-          padding-left: 0 !important;
-          margin-left: 0 !important;
-        }
-        #experience ul.list-disc li {
-          position: relative;
-          padding-left: 1.1em;
-          text-indent: -1.1em;
-        }
-        #experience ul.list-disc li::before {
-          content: "• ";
-          font-weight: 600;
-        }
-      }
-    </style>
+  /* (Optional comfort) form labels/inputs left aligned */
+  #contact form label,
+  #contact form input,
+  #contact form textarea {
+    text-align: left !important;
+  }
+}
+</style>
 </head>
 
-<body class="light bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 overflow-x-hidden">
+<body class="light bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
     <!-- Header/Navigation -->
     <header class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
         <div class="container mx-auto px-6 py-4">
@@ -482,93 +430,103 @@
         </div>
     </section>
 
-   <!-- Skills Section -->
-<section id="skills" class="py-20 bg-gray-100 dark:bg-gray-800">
-  <div class="container mx-auto px-6">
-    <h2 class="text-3xl font-bold mb-12 text-center">
-      My <span class="gradient-text">Skills</span>
-    </h2>
-
-    <!-- ✅ Top 8 AI/ML, SWE & Embedded System Skills -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-      <!-- 1️⃣ Deep Learning & Computer Vision -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-          <i class="fas fa-brain text-3xl text-primary-light dark:text-primary-dark"></i>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Skills</span></h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Skill 1 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
+                        <i class="fab fa-python text-3xl text-primary-light dark:text-primary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Python</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 95%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 2 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
+                        <i class="fas fa-cogs text-3xl text-primary-light dark:text-primary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">C/C++ & Java</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 3 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
+                        <i class="fas fa-brain text-3xl text-primary-light dark:text-primary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">TensorFlow</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 4 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
+                        <i class="fab fa-react text-3xl text-primary-light dark:text-primary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">JavaScript/React</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 88%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 5 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
+                        <i class="fab fa-docker text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Docker/Kubernetes</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 6 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
+                        <i class="fas fa-vial text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2"></h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 82%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 7 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
+                        <i class="fas fa-cloud text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">AWS/GCP</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 78%"></div>
+                    </div>
+                </div>
+                
+                <!-- Skill 8 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
+                        <i class="fas fa-microchip text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Linux/Perf/Kernel</h3>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 86%"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h3 class="font-semibold mb-2">Deep Learning & Vision</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">TensorFlow · OpenCV · CNN/FNN · XAI</p>
-      </div>
+    </section>
 
-      <!-- 2️⃣ AI Automation & Validation -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-          <i class="fas fa-robot text-3xl text-secondary-light dark:text-secondary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">AI Automation & Validation</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">ML pipelines · anomaly detection · CI/CD inference</p>
-      </div>
-
-      <!-- 3️⃣ Embedded & System Software -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-          <i class="fas fa-microchip text-3xl text-primary-light dark:text-primary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">Embedded Systems</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">C/C++ · Android HAL · Linux Kernel · Optimization</p>
-      </div>
-
-      <!-- 4️⃣ Full-Stack Engineering -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-          <i class="fas fa-code text-3xl text-secondary-light dark:text-secondary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">Full-Stack Development</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Python · Java · React · Node.js</p>
-      </div>
-
-      <!-- 5️⃣ Cloud & DevOps -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-          <i class="fas fa-cloud text-3xl text-primary-light dark:text-primary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">Cloud & DevOps</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">AWS · GCP · Docker · Kubernetes · Jenkins</p>
-      </div>
-
-      <!-- 6️⃣ Data Engineering -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-          <i class="fas fa-database text-3xl text-secondary-light dark:text-secondary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">Data Engineering</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">ETL · Kafka · ElasticSearch · Tableau</p>
-      </div>
-
-      <!-- 7️⃣ Software Testing & CI/CD -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-          <i class="fas fa-vial text-3xl text-primary-light dark:text-primary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">Software Testing</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Selenium · PyTest · JUnit · Cypress</p>
-      </div>
-
-      <!-- 8️⃣ System Integration -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-          <i class="fas fa-project-diagram text-3xl text-secondary-light dark:text-secondary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">System Integration</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">AI · Camera · Hardware · Cross-team collaboration</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-   
     <!-- Contact Section -->
     <section id="contact" class="py-20">
         <div class="container mx-auto px-6">
@@ -770,30 +728,6 @@
         window.addEventListener('scroll', animateOnScroll);
         // Trigger once on page load
         window.addEventListener('load', animateOnScroll);
-    </script>
-
-    <!-- ✅ ADD: Lock scroll when mobile menu is open (additive) -->
-    <script>
-      (function () {
-        var btn = document.getElementById('mobile-menu-button');
-        var menu = document.getElementById('mobile-menu');
-        if (!btn || !menu) return;
-
-        function lockScroll(lock) {
-          document.documentElement.style.overflowY = lock ? 'hidden' : '';
-          document.body.style.overflowY = lock ? 'hidden' : '';
-          document.body.style.touchAction = lock ? 'none' : '';
-        }
-
-        btn.addEventListener('click', function () {
-          var opening = menu.classList.contains('hidden'); // if it was hidden, we're opening
-          lockScroll(opening);
-        });
-
-        document.querySelectorAll('#mobile-menu a').forEach(function (a) {
-          a.addEventListener('click', function () { lockScroll(false); });
-        });
-      })();
     </script>
 </body>
 </html>
