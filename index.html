@@ -80,7 +80,49 @@
             width: 100%;
         }
     </style>
+	<!-- ✅ Mobile-only responsive centering (added section) -->
+    <style>
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+      }
+      #home, #about, #experience, #projects, #skills, #contact {
+        text-align: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      #home .flex {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      .container {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      #home img, #about img {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+      #home .flex.space-x-4, 
+      #home .flex.space-x-4 > a {
+        justify-content: center !important;
+        text-align: center !important;
+      }
+      #mobile-menu {
+        width: 100%;
+        left: 0;
+        right: 0;
+      }
+      .project-card, .bg-white.dark\:bg-gray-700 {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    </style>
 </head>
+
 <body class="light bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
     <!-- Header/Navigation -->
     <header class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
