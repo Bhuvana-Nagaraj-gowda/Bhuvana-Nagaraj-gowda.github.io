@@ -104,79 +104,128 @@
     </style>
 
     <!-- ✅ ADD: Mobile Hardening (fluid type, safe anchors, overflow guards) -->
-    <style>
-      :root {
-        --h1: clamp(1.8rem, 4.5vw + 1rem, 3.25rem);
-        --h2: clamp(1.25rem, 2.5vw + 0.9rem, 2rem);
-        --pad: clamp(1rem, 2.5vw, 1.25rem);
-      }
-      /* anchors won't hide under fixed header */
-      #home, #about, #experience, #projects, #skills, #contact { scroll-margin-top: 84px; }
-      /* images never overflow */
-      img { max-width: 100%; height: auto; }
-      /* wrap long content to avoid horizontal scroll */
-      p, a, li { overflow-wrap: anywhere; word-break: break-word; }
+   <style>
+  :root {
+    --h1: clamp(1.8rem, 4.5vw + 1rem, 3.25rem);
+    --h2: clamp(1.25rem, 2.5vw + 0.9rem, 2rem);
+    --pad: clamp(1rem, 2.5vw, 1.25rem);
+  }
 
-      @media (max-width: 768px) {
-        html, body { width: 100%; }
-        body { overflow-x: hidden; }
+  /* anchors won't hide under fixed header */
+  #home, #about, #experience, #projects, #skills, #contact { scroll-margin-top: 84px; }
 
-        /* consistent padding on phones */
-        .container { padding-left: var(--pad) !important; padding-right: var(--pad) !important; }
-        section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  /* images never overflow */
+  img { max-width: 100%; height: auto; }
 
-        /* header full bleed and tap size */
-        header { left: 0; right: 0; }
-        header nav a, header button { min-height: 44px; }
+  /* wrap long content to avoid horizontal scroll */
+  p, a, li { overflow-wrap: anywhere; word-break: break-word; }
 
-        /* hero fluid headings and centered content */
-        #home .flex { flex-direction: column; align-items: center; text-align: center; }
-        #home h1 { font-size: var(--h1); }
-        #home h2 { font-size: var(--h2); }
+  @media (max-width: 768px) {
+    html, body { width: 100%; }
+    body { overflow-x: hidden; }
 
-        /*  HERO BUTTONS: single row, scrollable if needed */
-        #home .btn-row {
-          display: flex;
-          gap: .65rem;
-          flex-wrap: nowrap;
-          justify-content: flex-start;
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-          padding-bottom: .25rem;
-          margin-left: auto;
-          margin-right: auto;
-          max-width: 100%;
-        }
-        #home .btn-row a { white-space: nowrap; }
+    /* consistent padding on phones */
+    .container { padding-left: var(--pad) !important; padding-right: var(--pad) !important; }
+    section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 
-        /* avatar sizing */
-        #home .relative.w-64.h-64 { width: 14rem !important; height: 14rem !important; }
+    /* header full bleed and tap size */
+    header { left: 0; right: 0; }
+    header nav a, header button { min-height: 44px; }
 
-        /* about center content */
-        #about .md\:w-2\/3 { padding-left: 0 !important; }
-        #about .w-64.h-64 { width: 14rem !important; height: 14rem !important; margin-inline: auto; }
+    /* hero fluid headings and centered content */
+    #home .flex { 
+      flex-direction: column; 
+      align-items: center; 
+      text-align: center; 
+    }
 
-        /* grids collapse to one column */
-        #experience .grid, #projects .grid, #skills .grid { grid-template-columns: 1fr !important; }
+    #home h1 { font-size: var(--h1); }
+    #home h2 { font-size: var(--h2); }
 
-        /* center cards */
-        .experience-card, .project-card, .bg-white.dark\:bg-gray-700 { margin-inline: auto; }
+    /* ✅ BUTTON ROW: keep buttons horizontal and scrollable on mobile */
+    #home .btn-row {
+      display: flex;
+      flex-direction: row !important;      /* force row layout */
+      align-items: center;
+      gap: .65rem;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: .25rem;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 100%;
+    }
+    #home .btn-row a { 
+      white-space: nowrap; 
+      flex-shrink: 0;        /* don't let them squish */
+    }
 
-        /* mobile menu coverage */
-        #mobile-menu { width: 100%; left: 0; right: 0; z-index: 60; }
+    /* avatar sizing */
+    #home .relative.w-64.h-64 { 
+      width: 14rem !important; 
+      height: 14rem !important; 
+    }
 
-        /* contact form full width */
-        #contact .md\:w-1\/2 { width: 100% !important; }
+    /* about center content */
+    #about .md\:w-2\/3 { padding-left: 0 !important; }
+    #about .w-64.h-64 { 
+      width: 14rem !important; 
+      height: 14rem !important; 
+      margin-inline: auto; 
+    }
 
-        /*  CONTACT COLUMN + “View my” left aligned on mobile */
-        #contact .contact-col { text-align: left !important; }
-        #contact .contact-col .flex { justify-content: flex-start !important; }
+    /* grids collapse to one column */
+    #experience .grid, 
+    #projects .grid, 
+    #skills .grid { 
+      grid-template-columns: 1fr !important; 
+    }
 
-        /*  Experience bullets as paragraph-like lines (left aligned) */
-        #experience .experience-card ul { list-style: none; padding-left: 0; margin-left: 0; }
-        #experience .experience-card li { text-align: left; margin-left: 0; padding-left: 0; margin-bottom: .5rem; }
-      }
-    </style>
+    /* center cards */
+    .experience-card, 
+    .project-card, 
+    .bg-white.dark\:bg-gray-700 { 
+      margin-inline: auto; 
+    }
+
+    /* mobile menu coverage */
+    #mobile-menu { 
+      width: 100%; 
+      left: 0; 
+      right: 0; 
+      z-index: 60; 
+    }
+
+    /* contact form full width */
+    #contact .md\:w-1\/2 { 
+      width: 100% !important; 
+    }
+
+    /* CONTACT COLUMN + “View my” left aligned on mobile */
+    #contact .contact-col { 
+      text-align: left !important; 
+    }
+    #contact .contact-col .flex { 
+      justify-content: flex-start !important; 
+    }
+
+    /* EXPERIENCE bullets look like paragraphs (left aligned, no bullet indent weirdness) */
+    #experience .experience-card ul { 
+      list-style: none; 
+      padding-left: 0; 
+      margin-left: 0; 
+    }
+    #experience .experience-card li { 
+      text-align: left; 
+      margin-left: 0; 
+      padding-left: 0; 
+      margin-bottom: .5rem; 
+    }
+  }
+</style>
+
 </head>
 
 <body class="light bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 overflow-x-hidden">
