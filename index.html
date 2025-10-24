@@ -79,58 +79,38 @@
         .nav-link:hover::after {
             width: 100%;
         }
+        /* hide mobile scrollbar (visual only) */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
-	<!-- ✅ Mobile-only responsive centering (added section) -->
+
+    <!-- ✅ Mobile-only responsive centering (kept) -->
     <style>
     @media (max-width: 768px) {
-      body {
-        overflow-x: hidden;
-      }
+      body { overflow-x: hidden; }
       #home, #about, #experience, #projects, #skills, #contact {
         text-align: center;
         padding-left: 1rem;
         padding-right: 1rem;
       }
-      #home .flex {
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-      .container {
-        margin-left: auto !important;
-        margin-right: auto !important;
-      }
-      #home img, #about img {
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-      }
+      #home .flex { flex-direction: column !important; align-items: center !important; justify-content: center !important; }
+      .container { margin-left: auto !important; margin-right: auto !important; }
+      #home img, #about img { margin-left: auto; margin-right: auto; display: block; }
       #home .flex.space-x-4, 
-      #home .flex.space-x-4 > a {
-        justify-content: center !important;
-        text-align: center !important;
-      }
-      #mobile-menu {
-        width: 100%;
-        left: 0;
-        right: 0;
-      }
-      .project-card, .bg-white.dark\:bg-gray-700 {
-        margin-left: auto;
-        margin-right: auto;
-      }
+      #home .flex.space-x-4 > a { justify-content: center !important; text-align: center !important; }
+      #mobile-menu { width: 100%; left: 0; right: 0; }
+      .project-card, .bg-white.dark\:bg-gray-700 { margin-left: auto; margin-right: auto; }
     }
     </style>
 
     <!-- ✅ ADD: Mobile Hardening (fluid type, safe anchors, overflow guards) -->
     <style>
-      /* ===== MOBILE HARDENING (additive only) ===== */
       :root {
         --h1: clamp(1.8rem, 4.5vw + 1rem, 3.25rem);
         --h2: clamp(1.25rem, 2.5vw + 0.9rem, 2rem);
         --pad: clamp(1rem, 2.5vw, 1.25rem);
       }
-      /* anchor offset so sections don't hide under fixed header */
+      /* anchors won't hide under fixed header */
       #home, #about, #experience, #projects, #skills, #contact { scroll-margin-top: 84px; }
       /* images never overflow */
       img { max-width: 100%; height: auto; }
@@ -149,11 +129,25 @@
         header { left: 0; right: 0; }
         header nav a, header button { min-height: 44px; }
 
-        /* hero fluid headings and centered buttons */
+        /* hero fluid headings and centered content */
         #home .flex { flex-direction: column; align-items: center; text-align: center; }
         #home h1 { font-size: var(--h1); }
         #home h2 { font-size: var(--h2); }
-        #home .flex.space-x-4 { gap: .75rem; flex-wrap: wrap; justify-content: center; }
+
+        /* ✅ HERO BUTTONS: single row, scrollable if needed */
+        #home .btn-row {
+          display: flex;
+          gap: .65rem;
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          padding-bottom: .25rem;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 100%;
+        }
+        #home .btn-row a { white-space: nowrap; }
 
         /* avatar sizing */
         #home .relative.w-64.h-64 { width: 14rem !important; height: 14rem !important; }
@@ -173,75 +167,15 @@
 
         /* contact form full width */
         #contact .md\:w-1\/2 { width: 100% !important; }
-      }
-    </style>
 
-    <!-- ✅ NEW: Mobile overrides — left-align Experience bullets & Contact (incl. "View my") -->
-    <style>
-    @media (max-width: 768px) {
-      /* ---- Experience: paragraph-style bullets, left aligned ---- */
-      #experience .experience-card ul.list-disc {
-        list-style: none !important;
-        padding-left: 0 !important;
-        margin-left: 0 !important;
-        text-align: left !important;
-      }
-      #experience .experience-card ul.list-disc li {
-        position: relative;
-        padding-left: 1.1em;    /* room for bullet */
-        text-indent: -1.1em;    /* hang bullet, wrap lines align with first */
-        text-align: left !important;
-      }
-      #experience .experience-card ul.list-disc li::before {
-        content: "• ";
-        font-weight: 600;
-      }
+        /* ✅ CONTACT COLUMN + “View my” left aligned on mobile */
+        #contact .contact-col { text-align: left !important; }
+        #contact .contact-col .flex { justify-content: flex-start !important; }
 
-      /* ---- Contact: left align info rows (overrides earlier centering) ---- */
-      #contact .space-y-6 {
-        text-align: left !important;
+        /* ✅ Experience bullets as paragraph-like lines (left aligned) */
+        #experience .experience-card ul { list-style: none; padding-left: 0; margin-left: 0; }
+        #experience .experience-card li { text-align: left; margin-left: 0; padding-left: 0; margin-bottom: .5rem; }
       }
-      #contact .space-y-6 > .flex {
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        gap: 0.75rem !important;
-        text-align: left !important;
-      }
-      /* keep small space between icon and text */
-      #contact .space-y-6 > .flex > div:first-child {
-        margin-right: 0.75rem !important;
-      }
-      #contact .space-y-6 h4,
-      #contact .space-y-6 p,
-      #contact .space-y-6 a {
-        text-align: left !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        display: block;
-      }
-
-      /* ---- Resume row & "View my" block left aligned ---- */
-      #contact .flex.items-start {
-        justify-content: flex-start !important;
-        text-align: left !important;
-      }
-      #contact .mt-8 {
-        text-align: left !important;
-      }
-      #contact .mt-8 h4 {
-        text-align: left !important;
-      }
-      #contact .mt-8 .flex {
-        justify-content: flex-start !important;
-      }
-
-      /* Ensure form elements remain left aligned for consistency */
-      #contact form label,
-      #contact form input,
-      #contact form textarea {
-        text-align: left !important;
-      }
-    }
     </style>
 </head>
 
@@ -283,8 +217,7 @@
                     <a href="#projects" class="nav-link">Projects</a>
                     <a href="#skills" class="nav-link">Skills</a>
                     <a href="#contact" class="nav-link">Contact</a>
-					<a href="Bhuvana_Nagaraj_SDE.pdf" download class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity"> Resume </a>
-
+                    <a href="Bhuvana_Nagaraj_SDE.pdf" download class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity"> Resume </a>
             </div>
         </div>
     </header>
@@ -298,20 +231,23 @@
                     <h2 class="text-2xl md:text-3xl font-semibold mb-6">Software Engineer </h2>
                     <p class="text-lg mb-8 text-gray-600 dark:text-gray-300 max-w-lg">
                     Software Engineer with 5+ years at Samsung Research, specializing in camera systems (HAL/kernel), QA automation, and AI-driven validation. Delivered flagship Galaxy imaging features on 12M+ devices, cut manual testing by 70% with scalable frameworks, and built Samsung Ads analytics tools with budgeting/CRM integration to boost ad accuracy and streamline reporting. 
-					<div class="flex space-x-4">
+                    <div class="btn-row flex space-x-4 no-scrollbar">
                         <a href="#contact" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity">
                             Contact Me
                         </a>
                         <a href="#projects" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                             View Work
                         </a>
-						<a href="https://msartificiaintellect.blogspot.com/" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <a href="https://msartificiaintellect.blogspot.com/" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                             Blogs
                         </a>
-						<a href="Bhuvana_Nagaraj_SDE.pdf" download class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity">
-						  Resume
-						</a>
-
+                        <a href="Bhuvana_Nagaraj_SDE.pdf" download class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity">
+                          Resume
+                        </a>
+                        <!-- ✅ LinkedIn button added -->
+                        <a href="https://linkedin.com/in/bhuvana-nagaraj04" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                          LinkedIn
+                        </a>
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center animate-slide-up">
@@ -344,7 +280,7 @@
                     <h3 class="text-2xl font-semibold mb-4">Who I Am</h3>
                     <p class="mb-6 text-gray-600 dark:text-gray-300">
                     Dynamic Software Engineer with 5+ years at Samsung Research, recognized for bridging deep technical expertise with measurable business outcomes. I played a key role in developing and commercializing advanced Galaxy camera features (HDR, Night, 48MP capture) across 12M+ devices, directly enhancing product differentiation and customer experience. On the quality side, I spearheaded automation strategy and frameworks that reduced manual testing by 70% and cut defect resolution time by 40%, enabling faster and more reliable product launches. Leveraging AI/ML for validation pipelines, I improved ad detection accuracy by 30% while reducing flaky tests, ensuring higher trust and engagement for Samsung Ads platforms. I also built analytics tools integrated with budgeting and CRM systems, streamlining campaign validation, reducing reporting overhead by 60%, and improving ROI visibility for business stakeholders. Skilled in working cross-functionally with hardware, multimedia, QA, and product teams, I consistently deliver scalable, high-quality solutions that balance technical depth with business impact. Recognized through multiple Samsung Spot Awards, I bring proven expertise in innovation, execution, and leadership that drives success across complex, global-scale projects.    
-					</p>
+                    </p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
@@ -364,6 +300,7 @@
             </div>
         </div>
     </section>
+
 <!-- Experience Section -->
 <section id="experience" class="py-20 bg-gray-50 dark:bg-gray-900">
   <div class="container mx-auto px-6">
@@ -429,7 +366,6 @@
   </div>
 </div>
 
-
       <!-- Internship -->
       <div class="experience-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
         <div class="p-6">
@@ -440,11 +376,8 @@
           <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
             <li>Designed and implemented a Single Sign-On (SSO) Central Authentication Service (CAS) using Java Servlets, WebSockets, and Digital Certificates on Apache Tomcat, improving authentication security and reducing redundant logins across enterprise apps.</li>
             <li>Built real-time interactive dashboards with React, D3.js, and Ignite UI, including box plots, heatmaps, and sparklines, enabling engineers to quickly analyze anomalies and performance trends.</li>
-			<li>Optimized WebSocket communication for sub-200ms latency updates and scaled front-end rendering to handle 100k+ data points per view without performance degradation.</li>
-			<li>Collaborated with backend and QA teams to integrate the visualization platform into production workflows, ensuring secure data flow, reliability, and usability across multiple teams.</li>
-          </ul>
-        </div>
-		  
+            <li>Optimized WebSocket communication for sub-200ms latency updates and scaled front-end rendering to handle 100k+ data points per view without performance degradation.</li>
+            <li>Collaborated with backend and QA teams to integrate the visualization platform into production workflows, ensuring secure data flow, reliability, and usability across multiple teams.</li>
           </ul>
         </div>
       </div>
@@ -453,7 +386,6 @@
   </div>
 </section>
 
-                
     <!-- Projects Section -->
     <section id="projects" class="py-20">
         <div class="container mx-auto px-6">
@@ -477,6 +409,7 @@
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">OpenCV</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Docker</span>
                         </div>
+                        <a href="https://github.com/Bhuvana-Nagaraj-gowda?tab=repositories" class="text-sm underline hover:no-underline">View on GitHub</a>
                     </div>
                 </div>
                 
@@ -497,6 +430,7 @@
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">SMOTE</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">XAI/SHAP</span>
                         </div>
+                        <a href="https://github.com/Bhuvana-Nagaraj-gowda?tab=repositories" class="text-sm underline hover:no-underline">View on GitHub</a>
                     </div>
                 </div>
                 
@@ -517,7 +451,7 @@
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Android HAL</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Performance</span>
                         </div>
-						</div>
+                        <a href="https://github.com/Bhuvana-Nagaraj-gowda?tab=repositories" class="text-sm underline hover:no-underline">View on GitHub</a>
                     </div>
                 </div>
             </div>
@@ -531,7 +465,7 @@
       My <span class="gradient-text">Skills</span>
     </h2>
 
-    <!-- ✅ Top 8 AI/ML, SWE & Embedded System Skills -->
+    <!-- Top 8 AI/ML, SWE & Embedded System Skills -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
       <!-- 1️⃣ Deep Learning & Computer Vision -->
@@ -610,14 +544,13 @@
   </div>
 </section>
 
-   
     <!-- Contact Section -->
     <section id="contact" class="py-20">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold mb-12 text-center">Get In <span class="gradient-text">Touch</span></h2>
             
             <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-8">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-8 contact-col">
                     <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
                     <p class="mb-8 text-gray-600 dark:text-gray-300">
                        If you have any questions or would like to know more about my work, feel free to reach out. I’ll be happy to connect.
@@ -654,22 +587,22 @@
                             </div>
                         </div>
                     </div>
-					<div class="flex items-start">
- 					 <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-   						 <i class="fas fa-file-pdf text-primary-light dark:text-primary-dark"></i>
-  					</div>
-  					<div>
-   					 <h4 class="font-semibold">Resume</h4>
-   					 <p class="text-gray-600 dark:text-gray-300">
-     				 	<a href="Bhuvana_Nagaraj_SDE.pdf" download class="underline hover:no-underline">
-       					 Download PDF
-     					 </a>
-   					 </p>
- 				 </div>
-				</div>
 
-                    
-                     <div class="mt-8">
+                    <div class="flex items-start mt-6">
+                        <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
+                           <i class="fas fa-file-pdf text-primary-light dark:text-primary-dark"></i>
+                        </div>
+                        <div>
+                         <h4 class="font-semibold">Resume</h4>
+                         <p class="text-gray-600 dark:text-gray-300">
+                           <a href="Bhuvana_Nagaraj_SDE.pdf" download class="underline hover:no-underline">
+                             Download PDF
+                           </a>
+                         </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
                         <h4 class="font-semibold mb-4">View my</h4>
                         <div class="flex space-x-4">
                             <a href="https://github.com/Bhuvana-Nagaraj-gowda" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
@@ -725,7 +658,7 @@
                 <div class="flex space-x-6">
                     <a href="#home" class="nav-link">Home</a>
                     <a href="#about" class="nav-link">About</a>
-                    <a href="#projects" class="nav-link">Projects</a>			
+                    <a href="#projects" class="nav-link">Projects</a>         
                     <a href="#contact" class="nav-link">Contact</a>
                 </div>
             </div>
@@ -814,7 +747,7 @@
         window.addEventListener('load', animateOnScroll);
     </script>
 
-    <!-- ✅ ADD: Lock scroll when mobile menu is open (additive) -->
+    <!-- ✅ Lock scroll when mobile menu is open -->
     <script>
       (function () {
         var btn = document.getElementById('mobile-menu-button');
