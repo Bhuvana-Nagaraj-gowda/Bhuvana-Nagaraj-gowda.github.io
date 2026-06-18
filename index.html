@@ -1,878 +1,547 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            light: '#fbb6ce',
-                            dark: '#f472b6'
-                        },
-                        secondary: {
-                            light: '#fcd5ce',
-                            dark: '#f8a5c2'
-                        }
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.5s ease-out'
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' }
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .gradient-text {
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        .light .gradient-text {
-            background-image: linear-gradient(45deg, #3b82f6, #10b981);
-        }
-        .dark .gradient-text {
-            background-image: linear-gradient(45deg, #60a5fa, #34d399);
-        }
-        .project-card {
-            transition: all 0.3s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        .theme-toggle {
-            transition: all 0.3s ease;
-        }
-        .theme-toggle:hover {
-            transform: rotate(30deg);
-        }
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: currentColor;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        /* hide mobile scrollbar (visual only) */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bhuvana Nagaraj — AI Engineer</title>
+<meta name="description" content="Bhuvana Nagaraj — AI Engineer building agentic systems, computer-vision pipelines, and interpretable AI. 6+ years shipping ML to 12M+ devices." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --ink:        #0B0614;   /* deep violet-black */
+    --ink-2:      #100A1C;
+    --surface:    #160E26;   /* raised panel */
+    --surface-2:  #1E1432;
+    --line:       #2C1F45;
+    --hot:        #FF6B3D;    /* inferno orange — primary */
+    --magenta:    #E0468C;    /* mid heatmap */
+    --gold:       #FFC857;    /* top of colormap */
+    --cool:       #7C6BFF;    /* cool end */
+    --text:       #F3EDF9;
+    --muted:      #A698BC;
+    --muted-2:    #7B6E92;
 
-    <!-- Mobile-only responsive centering (kept) -->
-    <style>
-    @media (max-width: 768px) {
-      body { overflow-x: hidden; }
-      #home, #about, #experience, #projects, #skills, #contact {
-        text-align: center;
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-      #home .flex { flex-direction: column !important; align-items: center !important; justify-content: center !important; }
-      .container { margin-left: auto !important; margin-right: auto !important; }
-      #home img, #about img { margin-left: auto; margin-right: auto; display: block; }
-      #home .flex.space-x-4, 
-      #home .flex.space-x-4 > a { justify-content: center !important; text-align: center !important; }
-      #mobile-menu { width: 100%; left: 0; right: 0; }
-      .project-card, .bg-white.dark\:bg-gray-700 { margin-left: auto; margin-right: auto; }
-    }
-    </style>
+    --display: 'Space Grotesk', system-ui, sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
 
-    <!-- ADD: Mobile Hardening (fluid type, safe anchors, overflow guards) -->
-   <style>
-  :root {
-    --h1: clamp(1.8rem, 4.5vw + 1rem, 3.25rem);
-    --h2: clamp(1.25rem, 2.5vw + 0.9rem, 2rem);
-    --pad: clamp(1rem, 2.5vw, 1.25rem);
+    --h1: clamp(2.6rem, 6vw + 1rem, 5.4rem);
+    --h2: clamp(1.7rem, 3vw + 1rem, 2.9rem);
+    --maxw: 1180px;
+    --ease: cubic-bezier(.2,.7,.2,1);
   }
 
-  /* anchors won't hide under fixed header */
-  #home, #about, #experience, #projects, #skills, #contact { scroll-margin-top: 84px; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  ::selection{ background:var(--hot); color:#1a0d05; }
 
-  /* images never overflow */
-  img { max-width: 100%; height: auto; }
+  .wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+  section{ position:relative; padding:clamp(72px,11vw,140px) 0; }
+  .eyebrow{
+    font-family:var(--mono); font-size:.78rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--hot); display:inline-flex; align-items:center; gap:.6em;
+  }
+  .eyebrow::before{ content:''; width:26px; height:1px; background:linear-gradient(90deg,var(--hot),transparent); }
+  h1,h2,h3{ font-family:var(--display); font-weight:700; line-height:1.04; letter-spacing:-.02em; }
+  .section-title{ font-size:var(--h2); margin:.5rem 0 0; }
+  .section-head{ margin-bottom:clamp(36px,5vw,64px); max-width:640px; }
+  .section-head p{ color:var(--muted); margin-top:14px; font-size:1.05rem; }
 
-  /* wrap long content to avoid horizontal scroll */
-  p, a, li { overflow-wrap: anywhere; word-break: break-word; }
+  /* ============ NAV ============ */
+  header{
+    position:fixed; inset:0 0 auto 0; z-index:60;
+    backdrop-filter:blur(14px);
+    background:color-mix(in srgb, var(--ink) 72%, transparent);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s, background .3s;
+  }
+  header.scrolled{ border-color:var(--line); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; height:68px; }
+  .brand{ font-family:var(--mono); font-size:.92rem; letter-spacing:.02em; display:flex; align-items:center; gap:10px; }
+  .brand .dot{ width:9px; height:9px; border-radius:50%; background:var(--hot); box-shadow:0 0 12px var(--hot); animation:pulse 2.4s var(--ease) infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:1; transform:scale(1);} 50%{ opacity:.4; transform:scale(.7);} }
+  .nav-links{ display:flex; gap:28px; align-items:center; }
+  .nav-links a{ font-family:var(--mono); font-size:.82rem; color:var(--muted); letter-spacing:.04em; position:relative; transition:color .25s; }
+  .nav-links a::after{ content:''; position:absolute; left:0; bottom:-6px; height:1px; width:0; background:var(--hot); transition:width .3s var(--ease); }
+  .nav-links a:hover{ color:var(--text); } .nav-links a:hover::after{ width:100%; }
+  .nav-cta{ font-family:var(--mono); font-size:.8rem; padding:9px 16px; border:1px solid var(--line); border-radius:999px; color:var(--text)!important; transition:.25s; }
+  .nav-cta:hover{ border-color:var(--hot); background:color-mix(in srgb,var(--hot) 14%,transparent); }
+  .menu-btn{ display:none; background:none; border:1px solid var(--line); color:var(--text); width:42px; height:42px; border-radius:10px; font-size:1.1rem; cursor:pointer; }
 
-  @media (max-width: 768px) {
-    html, body { width: 100%; }
-    body { overflow-x: hidden; }
+  /* ============ HERO ============ */
+  #home{ min-height:100vh; display:flex; align-items:center; padding-top:68px; }
+  #heat{ position:absolute; inset:0; width:100%; height:100%; z-index:0; }
+  .hero-veil{ position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:
+      radial-gradient(120% 90% at 18% 40%, transparent 0%, color-mix(in srgb,var(--ink) 78%,transparent) 52%, var(--ink) 100%),
+      linear-gradient(180deg, transparent 60%, var(--ink) 100%);
+  }
+  .hero-inner{ position:relative; z-index:2; width:100%; }
+  .hero-inner .eyebrow{ opacity:0; animation:rise .7s var(--ease) .15s forwards; }
+  .hero h1{ font-size:var(--h1); margin:18px 0 6px; opacity:0; animation:rise .8s var(--ease) .28s forwards; }
+  .hero h1 .grad{ background:linear-gradient(95deg,var(--gold),var(--hot) 45%,var(--magenta) 90%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .typed-line{ font-family:var(--display); font-weight:500; font-size:clamp(1.2rem,2.4vw,1.9rem); color:var(--muted); min-height:1.4em; margin-bottom:22px; opacity:0; animation:rise .8s var(--ease) .4s forwards; }
+  .typed{ color:var(--text); border-right:2px solid var(--hot); padding-right:2px; }
+  .hero p.lede{ max-width:540px; color:var(--muted); font-size:1.08rem; opacity:0; animation:rise .8s var(--ease) .52s forwards; }
+  .cta-row{ display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; opacity:0; animation:rise .8s var(--ease) .64s forwards; }
+  .btn{ font-family:var(--mono); font-size:.86rem; padding:13px 22px; border-radius:12px; transition:.25s var(--ease); display:inline-flex; align-items:center; gap:9px; cursor:pointer; }
+  .btn-primary{ background:linear-gradient(95deg,var(--hot),var(--magenta)); color:#16070b; font-weight:600; box-shadow:0 10px 30px -10px var(--hot); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 16px 38px -10px var(--hot); }
+  .btn-ghost{ border:1px solid var(--line); color:var(--text); background:color-mix(in srgb,var(--surface) 50%,transparent); }
+  .btn-ghost:hover{ border-color:var(--cool); color:#fff; transform:translateY(-2px); }
+  @keyframes rise{ to{ opacity:1; transform:none; } }
+  .hero .eyebrow,.hero h1,.typed-line,.hero p.lede,.cta-row{ transform:translateY(18px); }
 
-    /* consistent padding on phones */
-    .container { padding-left: var(--pad) !important; padding-right: var(--pad) !important; }
-    section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .stats{ display:flex; flex-wrap:wrap; gap:14px; margin-top:48px; opacity:0; animation:rise .8s var(--ease) .8s forwards; transform:translateY(18px); }
+  .stat{ border:1px solid var(--line); border-radius:14px; padding:14px 18px; background:color-mix(in srgb,var(--surface) 55%,transparent); backdrop-filter:blur(6px); }
+  .stat b{ font-family:var(--display); font-size:1.5rem; color:var(--gold); display:block; line-height:1; }
+  .stat span{ font-family:var(--mono); font-size:.7rem; letter-spacing:.08em; color:var(--muted); text-transform:uppercase; }
 
-    /* header full bleed and tap size */
-    header { left: 0; right: 0; }
-    header nav a, header button { min-height: 44px; }
+  /* reveal */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in{ opacity:1; transform:none; }
 
-    /* hero fluid headings and centered content */
-    #home .flex { 
-      flex-direction: column; 
-      align-items: center; 
-      text-align: center; 
-    }
+  /* ============ ABOUT ============ */
+  #about{ background:linear-gradient(180deg,var(--ink),var(--ink-2)); }
+  .about-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:48px; align-items:start; }
+  .about-grid p{ color:var(--muted); font-size:1.08rem; margin-bottom:18px; }
+  .about-grid p strong{ color:var(--text); font-weight:600; }
+  .panel{ border:1px solid var(--line); border-radius:18px; background:var(--surface); padding:26px; }
+  .panel + .panel{ margin-top:18px; }
+  .panel .k{ font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--hot); }
+  .panel h4{ font-family:var(--display); font-size:1.15rem; margin:8px 0 4px; }
+  .panel .meta{ color:var(--muted); font-size:.95rem; }
 
-    #home h1 { font-size: var(--h1); }
-    #home h2 { font-size: var(--h2); }
+  /* ============ EXPERIENCE ============ */
+  .timeline{ position:relative; padding-left:34px; }
+  .timeline::before{ content:''; position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:linear-gradient(180deg,var(--hot),var(--magenta),transparent); }
+  .xp{ position:relative; padding:0 0 44px; }
+  .xp:last-child{ padding-bottom:0; }
+  .xp::before{ content:''; position:absolute; left:-29px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--ink); border:2px solid var(--hot); box-shadow:0 0 0 4px color-mix(in srgb,var(--hot) 16%,transparent); }
+  .xp .role{ font-family:var(--display); font-size:1.35rem; font-weight:600; }
+  .xp .co{ color:var(--hot); font-weight:600; }
+  .xp .when{ font-family:var(--mono); font-size:.78rem; color:var(--muted); letter-spacing:.05em; margin:4px 0 16px; }
+  .xp ul{ list-style:none; display:grid; gap:10px; }
+  .xp li{ position:relative; padding-left:22px; color:var(--muted); font-size:1rem; }
+  .xp li::before{ content:'▸'; position:absolute; left:0; color:var(--magenta); }
+  .xp li b{ color:var(--text); font-weight:600; }
 
-    /*  BUTTON ROW: keep buttons horizontal and scrollable on mobile */
-    #home .btn-row {
-      display: flex;
-      flex-direction: row !important;      /* force row layout */
-      align-items: center;
-      gap: .65rem;
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: .25rem;
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 100%;
-    }
-    #home .btn-row a { 
-      white-space: nowrap; 
-      flex-shrink: 0;        /* don't let them squish */
-    }
+  /* ============ PROJECTS ============ */
+  #projects{ background:linear-gradient(180deg,var(--ink-2),var(--ink)); }
+  .proj-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
+  .card{ position:relative; border:1px solid var(--line); border-radius:20px; background:var(--surface); padding:28px; overflow:hidden; transition:transform .35s var(--ease), border-color .35s; }
+  .card::before{ content:''; position:absolute; inset:0; background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%), color-mix(in srgb,var(--hot) 16%,transparent), transparent 60%); opacity:0; transition:opacity .4s; pointer-events:none; }
+  .card:hover{ transform:translateY(-6px); border-color:color-mix(in srgb,var(--hot) 50%,var(--line)); }
+  .card:hover::before{ opacity:1; }
+  .card .idx{ font-family:var(--mono); font-size:.74rem; color:var(--muted-2); letter-spacing:.1em; }
+  .card h3{ font-size:1.42rem; margin:10px 0 4px; }
+  .card .yr{ font-family:var(--mono); font-size:.74rem; color:var(--gold); }
+  .card p{ color:var(--muted); margin:14px 0 18px; font-size:1rem; }
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+  .tag{ font-family:var(--mono); font-size:.72rem; padding:5px 11px; border-radius:999px; border:1px solid var(--line); color:var(--muted); background:color-mix(in srgb,var(--surface-2) 70%,transparent); }
+  .card .link{ font-family:var(--mono); font-size:.82rem; color:var(--text); display:inline-flex; gap:7px; align-items:center; transition:gap .25s, color .25s; }
+  .card .link:hover{ gap:12px; color:var(--hot); }
 
-    /* avatar sizing */
-    #home .relative.w-64.h-64 { 
-      width: 14rem !important; 
-      height: 14rem !important; 
-    }
+  /* ============ SKILLS ============ */
+  .skill-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .skill{ border:1px solid var(--line); border-radius:16px; background:var(--surface); padding:22px; transition:.3s var(--ease); }
+  .skill:hover{ transform:translateY(-4px); border-color:color-mix(in srgb,var(--cool) 55%,var(--line)); background:var(--surface-2); }
+  .skill .h{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .skill .h .ic{ width:34px; height:34px; border-radius:9px; display:grid; place-items:center; font-size:1.05rem; background:color-mix(in srgb,var(--hot) 16%,transparent); }
+  .skill .h h4{ font-family:var(--display); font-size:1.02rem; }
+  .skill .chips{ display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:var(--mono); font-size:.72rem; color:var(--muted); padding:4px 9px; border-radius:7px; background:color-mix(in srgb,var(--surface-2) 80%,transparent); border:1px solid transparent; transition:.2s; }
+  .skill:hover .chip{ border-color:var(--line); color:var(--text); }
 
-    /* about center content */
-    #about .md\:w-2\/3 { padding-left: 0 !important; }
-    #about .w-64.h-64 { 
-      width: 14rem !important; 
-      height: 14rem !important; 
-      margin-inline: auto; 
-    }
+  /* ============ RECOGNITION ============ */
+  #wins{ background:linear-gradient(180deg,var(--ink),var(--ink-2)); }
+  .wins-row{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .win{ display:flex; gap:16px; align-items:flex-start; border:1px solid var(--line); border-radius:14px; padding:20px; background:var(--surface); }
+  .win .badge{ font-family:var(--display); font-weight:700; font-size:1.1rem; color:var(--gold); flex-shrink:0; width:46px; }
+  .win h4{ font-family:var(--display); font-size:1.02rem; margin-bottom:3px; }
+  .win p{ color:var(--muted); font-size:.92rem; }
 
-    /* grids collapse to one column */
-    #experience .grid, 
-    #projects .grid, 
-    #skills .grid { 
-      grid-template-columns: 1fr !important; 
-    }
+  /* ============ CONTACT ============ */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+  .contact-grid h2{ font-size:var(--h2); }
+  .ci{ display:flex; align-items:center; gap:14px; margin-top:18px; }
+  .ci .ic{ width:42px; height:42px; border-radius:11px; display:grid; place-items:center; background:color-mix(in srgb,var(--magenta) 16%,transparent); color:var(--magenta); }
+  .ci .k{ font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-2); }
+  .ci .v{ color:var(--text); }
+  .socials{ display:flex; gap:12px; margin-top:30px; }
+  .socials a{ width:46px; height:46px; border-radius:12px; display:grid; place-items:center; border:1px solid var(--line); color:var(--muted); transition:.25s; font-family:var(--mono); font-size:.82rem; }
+  .socials a:hover{ border-color:var(--hot); color:var(--hot); transform:translateY(-3px); }
+  form{ border:1px solid var(--line); border-radius:20px; background:var(--surface); padding:30px; display:grid; gap:16px; }
+  .field label{ font-family:var(--mono); font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:7px; }
+  .field input, .field textarea{ width:100%; background:var(--ink-2); border:1px solid var(--line); border-radius:11px; padding:12px 14px; color:var(--text); font-family:var(--body); font-size:.96rem; transition:.2s; }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--hot); box-shadow:0 0 0 3px color-mix(in srgb,var(--hot) 18%,transparent); }
+  form button{ width:100%; }
 
-    /* center cards */
-    .experience-card, 
-    .project-card, 
-    .bg-white.dark\:bg-gray-700 { 
-      margin-inline: auto; 
-    }
+  /* ============ FOOTER ============ */
+  footer{ border-top:1px solid var(--line); padding:36px 0; }
+  .foot{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .foot .m{ font-family:var(--mono); font-size:.8rem; color:var(--muted-2); }
 
-    /* mobile menu coverage */
-    #mobile-menu { 
-      width: 100%; 
-      left: 0; 
-      right: 0; 
-      z-index: 60; 
-    }
-
-    /* contact form full width */
-    #contact .md\:w-1\/2 { 
-      width: 100% !important; 
-    }
-
-    /* CONTACT COLUMN + “View my” left aligned on mobile */
-    #contact .contact-col { 
-      text-align: left !important; 
-    }
-    #contact .contact-col .flex { 
-      justify-content: flex-start !important; 
-    }
-
-    /* EXPERIENCE bullets look like paragraphs (left aligned, no bullet indent weirdness) */
-    #experience .experience-card ul { 
-      list-style: none; 
-      padding-left: 0; 
-      margin-left: 0; 
-    }
-    #experience .experience-card li { 
-      text-align: left; 
-      margin-left: 0; 
-      padding-left: 0; 
-      margin-bottom: .5rem; 
-    }
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:900px){
+    .about-grid,.proj-grid,.skill-grid,.wins-row,.contact-grid{ grid-template-columns:1fr; }
+    .nav-links{ display:none; } .menu-btn{ display:grid; place-items:center; }
+    .nav-links.open{ display:flex; position:absolute; top:68px; left:0; right:0; flex-direction:column; gap:0; background:var(--ink-2); border-top:1px solid var(--line); padding:8px 24px 20px; }
+    .nav-links.open a{ padding:14px 0; border-bottom:1px solid var(--line); width:100%; }
+    .nav-links.open .nav-cta{ margin-top:12px; text-align:center; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none!important; transition:none!important; }
+    .hero .eyebrow,.hero h1,.typed-line,.hero p.lede,.cta-row,.stats{ opacity:1; transform:none; }
+    .reveal{ opacity:1; transform:none; }
+    .typed{ border-right:none; }
   }
 </style>
-
 </head>
+<body>
 
-<body class="light bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 overflow-x-hidden">
-    <!-- Header/Navigation -->
-    <header class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
-        <div class="container mx-auto px-6 py-4">
-            <nav class="flex items-center justify-between">
-<a href="#" class="text-2xl font-semibold gradient-text">
-  Bhuvana Nagaraj | Graduating Dec 2025
-</a>
+<!-- NAV -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#home" class="brand"><span class="dot"></span>bhuvana.nagaraj()</a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+      <a href="Bhuvana_Nagaraj.pdf" download class="nav-cta">résumé ↓</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+  </div>
+</header>
 
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#experience" class="nav-link">Experience</a>
-                    <a href="#projects" class="nav-link">Projects</a>
-                    <a href="#skills" class="nav-link">Skills</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <button id="theme-toggle" class="theme-toggle p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-                        <i class="fas fa-moon dark:hidden"></i>
-                        <i class="fas fa-sun hidden dark:block"></i>
-                    </button>
-                    
-                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </nav>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
-            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#experience" class="nav-link">Experience</a>
-                    <a href="#projects" class="nav-link">Projects</a>
-                    <a href="#skills" class="nav-link">Skills</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                    <a href="Bhuvana_Nagaraj_SDE.pdf" download class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity"> Resume </a>
-            </div>
-        </div>
-    </header>
+<!-- HERO -->
+<section id="home" class="hero">
+  <canvas id="heat" aria-hidden="true"></canvas>
+  <div class="hero-veil"></div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">AI Engineer · San Francisco</span>
+    <h1>Bhuvana <span class="grad">Nagaraj</span></h1>
+    <div class="typed-line">I build <span class="typed" id="typed"></span></div>
+    <p class="lede">Six years turning research into production AI — from camera intelligence on <strong>12M+ Galaxy devices</strong> to agentic LLM systems and interpretable models you can actually trust. I work where autonomy meets safety.</p>
+    <div class="cta-row">
+      <a href="#projects" class="btn btn-primary">See the work →</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      <a href="Bhuvana_Nagaraj.pdf" download class="btn btn-ghost">Résumé ↓</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>6+</b><span>yrs production AI</span></div>
+      <div class="stat"><b>12M+</b><span>devices shipped to</span></div>
+      <div class="stat"><b>28</b><span>threat types classified</span></div>
+      <div class="stat"><b>195+</b><span>countries served</span></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center pt-20">
-        <div class="container mx-auto px-6 py-20">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0 animate-fade-in">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="gradient-text">Bhuvana Nagaraj</span></h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Software Engineer </h2>
-              
-                 <p class="text-lg mb-8 text-gray-600 dark:text-gray-300 max-w-lg">
-                    I build things that make technology smarter, faster, and a little more human. From ML-powered cameras to automation systems running on millions of Galaxy devices, I love the challenge of turning complex engineering into smooth, everyday experiences. If it’s impactful and ambitious, I’m in.
-                </p>
-
-                <div class="btn-row flex space-x-4 no-scrollbar">
-                        <a href="Bhuvana_Nagaraj_SDE.pdf" download class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity">
-                            Resume
-                        </a>
-                         <!--  LinkedIn button added -->
-                        <a href="https://linkedin.com/in/bhuvana-nagaraj04" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                          LinkedIn
-                        <a href="https://msartificiaintellect.blogspot.com/" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                            Blogs
-                        </a>
-                        
-
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center animate-slide-up">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary-light dark:border-primary-dark">
-                        <img src="image.jpg" 
-                             alt="Profile" 
-                             class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-primary-light dark:bg-primary-dark opacity-10"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-100 dark:bg-gray-800">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 text-center">About <span class="gradient-text">Me</span></h2>
-            
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                    <div class="w-64 h-64 rounded-lg overflow-hidden shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                             alt="About" 
-                             class="w-full h-full object-cover">
-                    </div>
-                </div>
-                
-                <div class="md:w-2/3 md:pl-12">
-                    <h3 class="text-2xl font-semibold mb-4">Who I Am</h3>
-                    <p class="mb-6 text-gray-600 dark:text-gray-300">
-    I’m Bhuvana Nagaraj, a Software Engineer who loves turning complex systems into intuitive, high-impact products. Over five years at Samsung Research, I built and scaled camera intelligence, automation frameworks, and AI-powered analytics that now run on 12M+ Galaxy devices. From enabling flagship features like HDR, Night, and 48MP capture to cutting manual testing by 70% through smart automation, I’ve focused on making technology faster, smarter, and more reliable for users worldwide. I enjoy solving real-world problems at the intersection of software, AI, and user experience, and I thrive in teams where innovation meets execution. Recognized with multiple Samsung Spot Awards, I’m driven by curiosity, precision, and the joy of building systems that truly make a difference.
-</p>
-
-                    
-                    <div class="max-w-5xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      
-      <!-- Education -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-        <div class="flex items-center mb-4">
-          <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-            <i class="fas fa-graduation-cap text-primary-light dark:text-primary-dark"></i>
-          </div>
-          <h4 class="font-semibold">Education</h4>
-        </div>
-        <p class="text-gray-600 dark:text-gray-300">
-          Master’s in Computer Science — GPA: 3.8/4<br>
-          Northern Arizona University, Dec 2025
-        </p>
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">// whoami</span>
+      <h2 class="section-title">Engineer at the intersection of intelligence and trust</h2>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I'm an <strong>AI Engineer</strong> who likes the hard part: taking models out of the notebook and making them dependable in the real world. At <strong>Samsung Research</strong> I spent five years shipping camera intelligence, on-device inference, and ML ad-validation pipelines across the Galaxy ecosystem — flagship features running on <strong>12M+ devices</strong> in 195+ countries.</p>
+        <p>Today I build <strong>agentic LLM systems</strong>, computer-vision pipelines, and explainable models — most recently LLM-powered NPC dialogue and reinforcement-learning agents in live game environments. My north star is <strong>agentic AI safety and mechanistic interpretability</strong>: systems that aren't just capable, but legible.</p>
+        <p>I'm finishing an <strong>M.S. in Computer Science (AI/ML)</strong> at Northern Arizona University, and I'm happiest on teams where ambitious research meets disciplined engineering.</p>
       </div>
-
-      <!-- Experience -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-        <div class="flex items-center mb-4">
-          <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-            <i class="fas fa-briefcase text-primary-light dark:text-primary-dark"></i>
-          </div>
-          <h4 class="font-semibold">Experience</h4>
+      <div class="reveal">
+        <div class="panel">
+          <span class="k">Education</span>
+          <h4>M.S. Computer Science — AI/ML</h4>
+          <p class="meta">Northern Arizona University · Dec 2025 · GPA 3.70/4.00</p>
         </div>
-        <p class="text-gray-600 dark:text-gray-300">
-          Senior Associate Engineer<br>
-          Samsung Research India, Jun 2018 to Jan 2024
-        </p>
+        <div class="panel">
+          <span class="k">Focus areas</span>
+          <h4>Agentic AI · Interpretability · CV</h4>
+          <p class="meta">LLMs &amp; RAG · multi-agent systems · on-device ML · XAI (SHAP/LIME)</p>
+        </div>
+        <div class="panel">
+          <span class="k">Certifications</span>
+          <h4>Oracle GenAI Professional</h4>
+          <p class="meta">OCI Associate Architect · Oracle Cloud Professional</p>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">// experience.log</span>
+      <h2 class="section-title">Where I've shipped</h2>
+    </div>
+    <div class="timeline">
+      <div class="xp reveal">
+        <div class="role"><span class="co">Easley-Dunn Productions</span> — AI Engineer</div>
+        <div class="when">Mar 2025 – Present · San Francisco, CA</div>
+        <ul>
+          <li>Architected <b>LLM-powered NPC dialogue systems</b> using RAG for context-aware, in-world player interactions.</li>
+          <li>Built <b>reinforcement-learning agents</b> for adaptive gameplay across multi-region production environments.</li>
+          <li>Optimized GenAI inference for procedural content, cutting asset-creation time <b>40%</b>.</li>
+          <li>Designed real-time ML behavior trees and integrated <b>multimodal models</b> for dynamic audio-visual content.</li>
+        </ul>
+      </div>
+      <div class="xp reveal">
+        <div class="role"><span class="co">Samsung Research</span> — Senior Associate Engineer</div>
+        <div class="when">Jul 2018 – Jan 2024 · Bangalore, India</div>
+        <ul>
+          <li><b>Camera:</b> on-device ML inference framework with <b>34% faster capture</b>; CNN defect detection lifting accuracy <b>30%</b> across the Galaxy S/Note/Tab/Foldable lineup.</li>
+          <li><b>Digital Ads:</b> ACR-based ML ad-validation (+30% precision) and a Kafka real-time fraud pipeline processing billions of events at sub-50ms — earned a <b>Samsung Spot Award</b>.</li>
+          <li><b>Multimedia:</b> TensorFlow Lite modules delivering <b>2× faster inference</b>; validation suite cutting deployment crash rates <b>40%</b>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">// selected work</span>
+      <h2 class="section-title">Things I've built</h2>
+      <p>Agents, vision, and interpretability — projects where the interesting part was making the model honest about what it's doing.</p>
+    </div>
+    <div class="proj-grid">
+
+      <article class="card reveal">
+        <span class="idx">01</span>
+        <h3>DuoCoder-NLP</h3>
+        <span class="yr">2025 · Python · MCP · Transformers</span>
+        <p>A two-agent MCP code-generation system — a Spec-Planner and a Builder-Verifier that parse tickets into acceptance criteria, pytest stubs, and plans, then orchestrate fs/git/process/http tools for end-to-end autonomous experimentation.</p>
+        <div class="tags"><span class="tag">Multi-agent</span><span class="tag">MCP</span><span class="tag">RL loop</span><span class="tag">NLP</span></div>
+        <a class="link" href="https://github.com/Bhuvana-Nagaraj-gowda?tab=repositories">View on GitHub →</a>
+      </article>
+
+      <article class="card reveal">
+        <span class="idx">02</span>
+        <h3>Explainable IoT Threat Detection</h3>
+        <span class="yr">2025 · TensorFlow · SMOTE · SHAP</span>
+        <p>An FNN pipeline classifying <b>28 cyberattack types</b> on 2.5M+ IoT-23 samples under severe class imbalance. SMOTE + focal loss for balance, SHAP for per-prediction attributions — audit-ready AI decisions, not a black box.</p>
+        <div class="tags"><span class="tag">XAI</span><span class="tag">SHAP</span><span class="tag">Imbalance</span><span class="tag">Security</span></div>
+        <a class="link" href="https://github.com/Bhuvana-Nagaraj-gowda?tab=repositories">View on GitHub →</a>
+      </article>
+
+      <article class="card reveal">
+        <span class="idx">03</span>
+        <h3>AutoBugCam</h3>
+        <span class="yr">2024 · PyTorch · UNet · ONNX</span>
+        <p>A dual-head segmentation model detecting HDR halos, moiré, flare, and 8 camera artifacts per-pixel. Synthetic artifact generators produced supervised masks; exported to ONNX for cross-platform mobile inference.</p>
+        <div class="tags"><span class="tag">Segmentation</span><span class="tag">PyTorch</span><span class="tag">ONNX</span><span class="tag">On-device</span></div>
+        <a class="link" href="https://github.com/Bhuvana-Nagaraj-gowda?tab=repositories">View on GitHub →</a>
+      </article>
+
+      <article class="card reveal">
+        <span class="idx">04</span>
+        <h3>Unsupervised IoT Anomaly Detection</h3>
+        <span class="yr">2024 · PyTorch · Autoencoder · SHAP</span>
+        <p>A deep autoencoder flagging anomalies via reconstruction-error thresholding — strong ROC-AUC / PR-AUC against Isolation Forest and One-Class SVM baselines, in a config-driven reproducible pipeline with SHAP attribution.</p>
+        <div class="tags"><span class="tag">Autoencoder</span><span class="tag">Anomaly</span><span class="tag">Reproducible</span><span class="tag">XAI</span></div>
+        <a class="link" href="https://github.com/Bhuvana-Nagaraj-gowda?tab=repositories">View on GitHub →</a>
+      </article>
 
     </div>
   </div>
 </section>
 
-<!-- Experience Section -->
-<section id="experience" class="py-20 bg-gray-50 dark:bg-gray-900">
-  <div class="container mx-auto px-6">
-    <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Experience</span></h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-      
-     <!-- Samsung Research -->
-<div class="experience-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
-  <div class="p-6">
-    <h3 class="text-xl font-semibold mb-2">Samsung Research</h3>
-    <p class="text-gray-600 dark:text-gray-300 mb-4">
-      Software Engineer | July 2018 – Jan 2024 | Bangalore, India
-    </p>
-
-    <div class="text-gray-600 dark:text-gray-300 space-y-6">
-
-     <!-- Camera Systems Engineering -->
-<div>
-  <h4 class="font-semibold text-lg mb-2">Camera Systems Engineering</h4>
-  <ul class="list-disc list-inside space-y-1">
-    <li>Developed scalable camera frameworks for Galaxy S/Note/Tab/Foldables integrating HAL, multimedia, and kernel drivers.</li>
-    <li>Delivered HDR, Night, and 48 MP modes deployed on 12 M+ flagship devices worldwide.</li>
-    <li>Built C++/Python debugging tools reducing crash rates 40 % and doubling CI/CD integration speed.</li>
-    <li>Optimized firmware achieving 34 % faster capture and 26 % runtime improvement across platforms.</li>
-  </ul>
-</div>
-
-<!-- Samsung Ads & AI Analytics -->
-<div>
-  <h4 class="font-semibold text-lg mb-2">Samsung Ads & AI Analytics</h4>
-  <ul class="list-disc list-inside space-y-1">
-    <li>Built AI-driven ad-detection pipelines with TensorFlow/OpenCV improving accuracy 30 % and audit speed 40 %.</li>
-    <li>Created budgeting and performance-tracking microservices cutting costs 20 % company-wide.</li>
-    <li>Embedded ML inference in CI/CD reducing manual QA 45 % and doubling release velocity.</li>
-    <li>Aligned telemetry and KPIs with business goals for real-time campaign optimization.</li>
-  </ul>
-</div>
-
-<!-- Multimedia & Cross-Functional Collaboration -->
-<div>
-  <h4 class="font-semibold text-lg mb-2">Multimedia & Cross-Functional Collaboration</h4>
-  <ul class="list-disc list-inside space-y-1">
-    <li>Developed C++/TensorFlow Lite modules for on-device AI inference and real-time frame analysis.</li>
-    <li>Co-designed encoder-decoder APIs optimizing video workflows across global multimedia teams.</li>
-  </ul>
-</div>
-</div>
-</div>
-
-</div>
-
-
-      <!-- Internship -->
-      <div class="experience-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
-        <div class="p-6">
-          <h3 class="text-xl font-semibold mb-2">Samsung Research</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Software Engineer Intern | July 2018 – Jan 2024 | Bangalore, India
-          </p>
-          <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-            <li>Designed and implemented a Single Sign-On (SSO) Central Authentication Service (CAS) using Java Servlets, WebSockets, and Digital Certificates on Apache Tomcat, improving authentication security and reducing redundant logins across enterprise apps.</li>
-            <li>Built real-time interactive dashboards with React, D3.js, and Ignite UI, including box plots, heatmaps, and sparklines, enabling engineers to quickly analyze anomalies and performance trends.</li>
-            <li>Optimized WebSocket communication for sub-200ms latency updates and scaled front-end rendering to handle 100k+ data points per view without performance degradation.</li>
-            <li>Collaborated with backend and QA teams to integrate the visualization platform into production workflows, ensuring secure data flow, reliability, and usability across multiple teams.</li>
-          </ul>
-        </div>
-      </div>
-      
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">// stack</span>
+      <h2 class="section-title">What I work with</h2>
+    </div>
+    <div class="skill-grid">
+      <div class="skill reveal"><div class="h"><span class="ic">🧠</span><h4>AI / ML</h4></div><div class="chips"><span class="chip">TensorFlow</span><span class="chip">PyTorch</span><span class="chip">Keras</span><span class="chip">Scikit-learn</span><span class="chip">XGBoost</span><span class="chip">CNN/FNN/RNN</span><span class="chip">GANs</span><span class="chip">Diffusion</span></div></div>
+      <div class="skill reveal"><div class="h"><span class="ic">💬</span><h4>LLMs &amp; GenAI</h4></div><div class="chips"><span class="chip">GPT-4</span><span class="chip">Claude</span><span class="chip">LLaMA</span><span class="chip">RAG</span><span class="chip">LangChain</span><span class="chip">LlamaIndex</span><span class="chip">Fine-tuning</span><span class="chip">RLHF</span></div></div>
+      <div class="skill reveal"><div class="h"><span class="ic">👁️</span><h4>Computer Vision</h4></div><div class="chips"><span class="chip">OpenCV</span><span class="chip">YOLO</span><span class="chip">Segmentation</span><span class="chip">Object Detection</span><span class="chip">PIL</span></div></div>
+      <div class="skill reveal"><div class="h"><span class="ic">🔍</span><h4>Interpretability</h4></div><div class="chips"><span class="chip">SHAP</span><span class="chip">LIME</span><span class="chip">Attribution</span><span class="chip">Mech. interp</span></div></div>
+      <div class="skill reveal"><div class="h"><span class="ic">📝</span><h4>NLP</h4></div><div class="chips"><span class="chip">Transformers</span><span class="chip">BERT</span><span class="chip">T5</span><span class="chip">Embeddings</span><span class="chip">NER</span><span class="chip">Classification</span></div></div>
+      <div class="skill reveal"><div class="h"><span class="ic">⚙️</span><h4>Languages</h4></div><div class="chips"><span class="chip">Python</span><span class="chip">Java</span><span class="chip">C / C++</span><span class="chip">SQL</span><span class="chip">JavaScript</span><span class="chip">Bash</span></div></div>
+      <div class="skill reveal"><div class="h"><span class="ic">☁️</span><h4>Data &amp; Cloud</h4></div><div class="chips"><span class="chip">AWS (SageMaker)</span><span class="chip">GCP</span><span class="chip">Kafka</span><span class="chip">Spark</span><span class="chip">ETL</span><span class="chip">Elasticsearch</span></div></div>
+      <div class="skill reveal"><div class="h"><span class="ic">🚀</span><h4>MLOps</h4></div><div class="chips"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">CI/CD</span><span class="chip">MLflow</span><span class="chip">W&amp;B</span><span class="chip">FastAPI</span></div></div>
+      <div class="skill reveal"><div class="h"><span class="ic">🔬</span><h4>On-device AI</h4></div><div class="chips"><span class="chip">TF Lite</span><span class="chip">ONNX</span><span class="chip">Snapdragon/Exynos</span><span class="chip">Quantization</span></div></div>
     </div>
   </div>
 </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Projects</span></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
-                    <div class="h-48 overflow-hidden">
-                        <img src="Ad.jpg" 
-                             alt="Project 1" 
-                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Ad Detection on Tizen</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Real-time on-device ad validation using OpenCV + TensorFlow with ACR data; Dockerized for scalable deployment on Samsung devices.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">TensorFlow</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">OpenCV</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Docker</span>
-                        </div>
-                        <a href="https://github.com/Bhuvana-Nagaraj-gowda?tab=repositories" class="text-sm underline hover:no-underline">View on GitHub</a>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
-                    <div class="h-48 overflow-hidden">
-                        <img src="iot.jpg" 
-                             alt="Project 2" 
-                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Explainable IoT Threat Detection</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            FNN with focal loss on IoT-23 to classify 28 attacks; SMOTE for imbalance handling; SHAP for model insights and mitigation planning.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">TensorFlow</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">SMOTE</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">XAI/SHAP</span>
-                        </div>
-                        <a href="https://github.com/Bhuvana-Nagaraj-gowda?tab=repositories" class="text-sm underline hover:no-underline">View on GitHub</a>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl">
-                    <div class="h-48 overflow-hidden">
-                        <img src="camera.jpg" 
-                             alt="Project 3" 
-                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Galaxy Camera HAL Optimizations</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            C/C++ at Android HAL: sensor bring-up, driver tuning, and capture pipeline improvements; reduced capture time and boosted runtime.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">C/C++</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Android HAL</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Performance</span>
-                        </div>
-                        <a href="https://github.com/Bhuvana-Nagaraj-gowda?tab=repositories" class="text-sm underline hover:no-underline">View on GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-   <!-- Skills Section -->
-<section id="skills" class="py-20 bg-gray-100 dark:bg-gray-800">
-  <div class="container mx-auto px-6">
-    <h2 class="text-3xl font-bold mb-12 text-center">
-      My <span class="gradient-text">Skills</span>
-    </h2>
-
-    <!-- Top 8 AI/ML, SWE & Embedded System Skills -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-      <!-- Deep Learning & Computer Vision -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-          <i class="fas fa-brain text-3xl text-primary-light dark:text-primary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">Deep Learning & Vision</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">TensorFlow · OpenCV · CNN/FNN · XAI</p>
-      </div>
-
-      <!--  AI Automation & Validation -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-          <i class="fas fa-robot text-3xl text-secondary-light dark:text-secondary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">AI Automation & Validation</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">ML pipelines · anomaly detection · CI/CD inference</p>
-      </div>
-
-      <!--  Embedded & System Software -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-          <i class="fas fa-microchip text-3xl text-primary-light dark:text-primary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">Embedded Systems</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">C/C++ · Android HAL · Linux Kernel · Optimization</p>
-      </div>
-
-      <!--  Full-Stack Engineering -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-          <i class="fas fa-code text-3xl text-secondary-light dark:text-secondary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">Full-Stack Development</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Python · Java · React · Node.js</p>
-      </div>
-
-      <!--  Cloud & DevOps -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-          <i class="fas fa-cloud text-3xl text-primary-light dark:text-primary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">Cloud & DevOps</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">AWS · GCP · Docker · Kubernetes · Jenkins</p>
-      </div>
-
-      <!--  Data Engineering -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-          <i class="fas fa-database text-3xl text-secondary-light dark:text-secondary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">Data Engineering</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">ETL · Kafka · ElasticSearch · Tableau</p>
-      </div>
-
-      <!--  Software Testing & CI/CD -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-          <i class="fas fa-vial text-3xl text-primary-light dark:text-primary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">Software Testing</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Selenium · PyTest · JUnit · Cypress</p>
-      </div>
-
-      <!-- System Integration -->
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
-        <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-          <i class="fas fa-project-diagram text-3xl text-secondary-light dark:text-secondary-dark"></i>
-        </div>
-        <h3 class="font-semibold mb-2">System Integration</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">AI · Camera · Hardware · Cross-team collaboration</p>
-      </div>
-
+<!-- RECOGNITION -->
+<section id="wins">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">// recognitions</span>
+      <h2 class="section-title">Some highlights</h2>
+    </div>
+    <div class="wins-row">
+      <div class="win reveal"><div class="badge">SF</div><div><h4>Anthropic AI Hackathon — Finalist</h4><p>Built a scalable explainable-ML system on an MCP architecture.</p></div></div>
+      <div class="win reveal"><div class="badge">'23</div><div><h4>Samsung Spot Award</h4><p>End-to-end AI-driven ads tracking &amp; ML validation pipeline for the U.S. region.</p></div></div>
+      <div class="win reveal"><div class="badge">'21</div><div><h4>Samsung Spot Award</h4><p>Early delivery of Galaxy S21 AI camera milestones — +34% imaging throughput.</p></div></div>
+      <div class="win reveal"><div class="badge">MCP</div><div><h4>MCP Hackathon — SF</h4><p>Autonomous multi-agent AI pipeline for real-time ad validation.</p></div></div>
     </div>
   </div>
 </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 text-center">Get In <span class="gradient-text">Touch</span></h2>
-            
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-8 contact-col">
-                    <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
-                    <p class="mb-8 text-gray-600 dark:text-gray-300">
-                       If you have any questions or would like to know more about my work, feel free to reach out. I’ll be happy to connect.
-                    </p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-                                <i class="fas fa-envelope text-primary-light dark:text-primary-dark"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Email</h4>
-                                <p class="text-gray-600 dark:text-gray-300">bhuvana.nagaraj.work@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-                                <i class="fas fa-phone-alt text-primary-light dark:text-primary-dark"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Phone</h4>
-                                <p class="text-gray-600 dark:text-gray-300">+1 (520) 491-9476</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-                                <i class="fas fa-map-marker-alt text-primary-light dark:text-primary-dark"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Location</h4>
-                                <p class="text-gray-600 dark:text-gray-300">San Mateo, CA</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start mt-6">
-                        <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-                           <i class="fas fa-file-pdf text-primary-light dark:text-primary-dark"></i>
-                        </div>
-                        <div>
-                         <h4 class="font-semibold">Resume</h4>
-                         <p class="text-gray-600 dark:text-gray-300">
-                           <a href="Bhuvana_Nagaraj_SDE.pdf" download class="underline hover:no-underline">
-                             Download PDF
-                           </a>
-                         </p>
-                        </div>
-                    </div>
-
-                    <div class="mt-8">
-                        <h4 class="font-semibold mb-4">View my</h4>
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/Bhuvana-Nagaraj-gowda" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://linkedin.com/in/bhuvana-nagaraj04" class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-               <div class="md:w-1/2">
-  <form 
-      action="https://formsubmit.co/bhuvana.nagaraj.work@gmail.com" 
-      method="POST"
-      class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm"
-  >
-      <!-- FormSubmit configuration -->
-      <input type="hidden" name="_subject" value="New message from your portfolio site">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://linkedin.com/in/bhuvana-nagaraj04">
-
-      <!-- Name -->
-      <div class="mb-6">
-          <label for="name" class="block mb-2 font-medium">Name</label>
-          <input 
-              type="text" 
-              id="name" 
-              name="name"
-              required
-              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg 
-                     focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark 
-                     bg-transparent transition-colors"
-          >
-      </div>
-
-      <!-- Email -->
-      <div class="mb-6">
-          <label for="email" class="block mb-2 font-medium">Email</label>
-          <input 
-              type="email" 
-              id="email" 
-              name="email"
-              required
-              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg 
-                     focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark 
-                     bg-transparent transition-colors"
-          >
-      </div>
-
-      <!--  Subject -->
-      <div class="mb-6">
-          <label for="subject" class="block mb-2 font-medium">Subject</label>
-          <input 
-              type="text" 
-              id="subject" 
-              name="subject"
-              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg 
-                     focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark 
-                     bg-transparent transition-colors"
-          >
-      </div>
-
-      <!-- Message -->
-      <div class="mb-6">
-          <label for="message" class="block mb-2 font-medium">Message</label>
-          <textarea 
-              id="message" 
-              name="message"
-              rows="5" 
-              required
-              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg 
-                     focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark 
-                     bg-transparent transition-colors"
-          ></textarea>
-      </div>
-
-      <!--  Send Button -->
-      <button 
-          type="submit" 
-          class="w-full px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg 
-                 hover:opacity-90 transition-opacity"
-      >
-          Send Message
-      </button>
-  </form>
-</div>
-
-            </div>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">// let's talk</span>
+        <h2 class="section-title" style="margin-top:.4rem">Building something ambitious?</h2>
+        <p style="color:var(--muted); margin-top:14px; max-width:420px;">I'm open to AI/ML engineering roles — agentic AI, computer vision, and interpretability. If that's your world, let's connect.</p>
+        <div class="ci"><div class="ic">✉</div><div><div class="k">Email</div><div class="v">bhuvana.nagaraj.work@gmail.com</div></div></div>
+        <div class="ci"><div class="ic">☎</div><div><div class="k">Phone</div><div class="v">+1 (520) 491-9476</div></div></div>
+        <div class="ci"><div class="ic">⚲</div><div><div class="k">Location</div><div class="v">San Francisco, CA</div></div></div>
+        <div class="socials">
+          <a href="https://linkedin.com/in/bhuvana-nagaraj04" aria-label="LinkedIn">in</a>
+          <a href="https://github.com/Bhuvana-Nagaraj-gowda" aria-label="GitHub">gh</a>
+          <a href="https://msartificiaintellect.blogspot.com/" aria-label="Blog">✎</a>
         </div>
-    </section>
+      </div>
+      <form class="reveal" action="https://formsubmit.co/bhuvana.nagaraj.work@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from your portfolio">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <div class="field"><label for="name">Name</label><input id="name" name="name" required></div>
+        <div class="field"><label for="email">Email</label><input id="email" type="email" name="email" required></div>
+        <div class="field"><label for="subject">Subject</label><input id="subject" name="subject"></div>
+        <div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="5" required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="justify-content:center">Send message →</button>
+      </form>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-100 dark:bg-gray-800 py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <a href="#" class="text-2xl font-bold gradient-text">Bhuvana Nagaraj</a>
-                    <p class="mt-2 text-gray-600 dark:text-gray-300">© 2025 All Rights Reserved</p>
-                </div>
-                
-                <div class="flex space-x-6">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#projects" class="nav-link">Projects</a>         
-                    <a href="#contact" class="nav-link">Contact</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+<footer>
+  <div class="wrap foot">
+    <span class="m">© 2025 Bhuvana Nagaraj · built with curiosity &amp; caffeine</span>
+    <span class="m">designed for AI/ML roles · SF + remote</span>
+  </div>
+</footer>
 
-    <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        
-        // Check for saved user preference or use system preference
-        const savedTheme = localStorage.getItem('theme') || 
-                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        html.classList.add(savedTheme);
-        
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            const theme = html.classList.contains('dark') ? 'dark' : 'light';
-            localStorage.setItem('theme', theme);
-        });
-        
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-        
-        // Smooth scrolling for all links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Add animation classes when elements come into view
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.animate-fade-in, .animate-slide-up');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        };
-        
-        // Set initial state for animated elements
-        document.querySelectorAll('.animate-fade-in').forEach(el => {
-            el.style.opacity = '0';
-            el.style.animation = 'fadeIn 0.5s ease-in-out forwards';
-        });
-        
-        document.querySelectorAll('.animate-slide-up').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.animation = 'slideUp 0.5s ease-out forwards';
-        });
-        
-        // Add scroll event listener
-        window.addEventListener('scroll', animateOnScroll);
-        // Trigger once on page load
-        window.addEventListener('load', animateOnScroll);
-    </script>
+<script>
+/* ===== nav ===== */
+const hdr = document.getElementById('hdr');
+addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 12));
+const menuBtn = document.getElementById('menuBtn'), navlinks = document.getElementById('navlinks');
+menuBtn.addEventListener('click', () => navlinks.classList.toggle('open'));
+navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
 
-    <!--  Lock scroll when mobile menu is open -->
-    <script>
-      (function () {
-        var btn = document.getElementById('mobile-menu-button');
-        var menu = document.getElementById('mobile-menu');
-        if (!btn || !menu) return;
+/* ===== reveal on scroll ===== */
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold:.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-        function lockScroll(lock) {
-          document.documentElement.style.overflowY = lock ? 'hidden' : '';
-          document.body.style.overflowY = lock ? 'hidden' : '';
-          document.body.style.touchAction = lock ? 'none' : '';
+/* ===== project card spotlight ===== */
+document.querySelectorAll('.card').forEach(c => {
+  c.addEventListener('pointermove', e => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+});
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ===== typed rotating roles ===== */
+(function(){
+  const el = document.getElementById('typed');
+  const words = ['agentic systems.', 'computer-vision pipelines.', 'LLM + RAG applications.', 'interpretable, safe AI.'];
+  if (reduce){ el.textContent = words[0]; el.style.borderRight='none'; return; }
+  let w=0, c=0, del=false;
+  (function tick(){
+    const word = words[w];
+    el.textContent = word.slice(0, c);
+    if (!del && c < word.length){ c++; setTimeout(tick, 70); }
+    else if (!del && c === word.length){ del=true; setTimeout(tick, 1500); }
+    else if (del && c > 0){ c--; setTimeout(tick, 35); }
+    else { del=false; w=(w+1)%words.length; setTimeout(tick, 300); }
+  })();
+})();
+
+/* ===== inferno heatmap (the signature) ===== */
+(function(){
+  const cv = document.getElementById('heat'), ctx = cv.getContext('2d');
+  // inferno colormap stops
+  const stops = [[0,0,4],[40,11,84],[101,21,110],[159,42,99],[212,72,66],[245,125,21],[250,193,39],[252,255,164]];
+  function cmap(t){
+    t = Math.max(0, Math.min(1, t));
+    const x = t*(stops.length-1), i = Math.floor(x), f = x-i;
+    const a = stops[i], b = stops[Math.min(i+1, stops.length-1)];
+    return [a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f, a[2]+(b[2]-a[2])*f];
+  }
+  let W,H, cols, rows, cell, mouse={x:-9e9,y:-9e9}, t=0, hotspots=[];
+  function resize(){
+    const r = cv.parentElement.getBoundingClientRect();
+    const dpr = Math.min(devicePixelRatio||1, 2);
+    W = r.width; H = r.height;
+    cv.width = W*dpr; cv.height = H*dpr; cv.style.width=W+'px'; cv.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    cell = Math.max(26, Math.round(W/46));
+    cols = Math.ceil(W/cell)+1; rows = Math.ceil(H/cell)+1;
+    hotspots = [
+      {x:.25,y:.4,vx:.00009,vy:.00013,a:.55,s:.16},
+      {x:.7,y:.65,vx:-.00011,vy:.00007,a:.45,s:.2},
+      {x:.55,y:.2,vx:.00007,vy:-.0001,a:.4,s:.13}
+    ];
+  }
+  addEventListener('resize', resize);
+  cv.addEventListener('pointermove', e => { const r=cv.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; });
+  cv.addEventListener('pointerleave', () => { mouse.x=-9e9; mouse.y=-9e9; });
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    if(!reduce){ t+=1; hotspots.forEach(h=>{ h.x+=h.vx; h.y+=h.vy; if(h.x<.05||h.x>.95)h.vx*=-1; if(h.y<.05||h.y>.95)h.vy*=-1; }); }
+    for(let cx=0; cx<cols; cx++){
+      for(let cy=0; cy<rows; cy++){
+        const px=cx*cell, py=cy*cell, nx=px/W, ny=py/H;
+        let v = 0.05;
+        for(const h of hotspots){
+          const dx=nx-h.x, dy=ny-h.y, d2=dx*dx+dy*dy;
+          v += h.a*Math.exp(-d2/(2*h.s*h.s));
         }
-
-        btn.addEventListener('click', function () {
-          var opening = menu.classList.contains('hidden'); // if it was hidden, we're opening
-          lockScroll(opening);
-        });
-
-        document.querySelectorAll('#mobile-menu a').forEach(function (a) {
-          a.addEventListener('click', function () { lockScroll(false); });
-        });
-      })();
-    </script>
+        if(!reduce) v += 0.04*Math.sin((nx*6)+(ny*5)+t*0.012);
+        // cursor heat
+        const mdx=px-mouse.x, mdy=py-mouse.y, md2=mdx*mdx+mdy*mdy;
+        const R=150; v += 0.9*Math.exp(-md2/(2*R*R));
+        v = Math.max(0, Math.min(1, v*0.62));
+        const [r,g,b] = cmap(v);
+        const alpha = 0.16 + v*0.78;
+        ctx.fillStyle = `rgba(${r|0},${g|0},${b|0},${alpha})`;
+        const sz = cell-2.5;
+        ctx.fillRect(px, py, sz, sz);
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  resize();
+  if(reduce){ draw(); /* one frame is fine; rAF loop still cheap & static */ }
+  else requestAnimationFrame(draw);
+})();
+</script>
 </body>
 </html>
